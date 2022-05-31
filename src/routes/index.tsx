@@ -1,8 +1,14 @@
+import Layout from 'components/Layout'
+import { Route, Routes } from 'react-router-dom'
+import TmpPage from './TmpPage'
+
 const App = () => {
   return (
-    <div className='App'>
-      <div>메인</div>
-    </div>
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        <Route path='/' element={<TmpPage />} />
+      </Route>
+    </Routes>
   )
 }
 
