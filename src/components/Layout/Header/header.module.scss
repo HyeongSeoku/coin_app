@@ -1,0 +1,7 @@
+@use 'styles/constants/colors';
+
+.headerContainer {
+  height: 70px;
+  color: colors.$WHITE;
+  background-color: colors.$HEADER;
+}

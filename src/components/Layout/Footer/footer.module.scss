@@ -1,0 +1,11 @@
+@use 'styles/constants/colors';
+
+.footerContainer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+  font-size: 18px;
+  background-color: colors.$GRAY6;
+}

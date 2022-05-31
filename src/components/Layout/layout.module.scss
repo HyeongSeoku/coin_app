@@ -1,0 +1,11 @@
+@use 'styles/constants/colors';
+
+.layoutContainer {
+  position: relative;
+  max-width: 600px;
+  height: 98vh;
+  //   TODO : 임시 스타일
+  margin-right: auto;
+  margin-left: auto;
+  border: 1px solid;
+}
