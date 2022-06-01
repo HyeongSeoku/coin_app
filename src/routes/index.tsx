@@ -1,12 +1,12 @@
 import Layout from 'components/Layout'
 import { Route, Routes } from 'react-router-dom'
-import TmpPage from './TmpPage'
+import Home from './Home'
 
 const App = () => {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
-        <Route path='/' element={<TmpPage />} />
+        <Route path='/' element={<Home />} />
       </Route>
     </Routes>
   )
