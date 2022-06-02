@@ -1,0 +1,23 @@
+@use 'styles/constants/colors';
+
+.dropDownContainer {
+  position: absolute;
+  top: 3px;
+  width: 150px;
+  max-height: 70px;
+  padding: 0;
+  overflow: scroll;
+  list-style: none;
+  background-color: colors.$WHITE;
+}
+
+.dropDownItem {
+  &:hover {
+    background-color: colors.$GRAYA;
+  }
+
+  .markKeyWord {
+    font-weight: 600;
+    background-color: transparent;
+  }
+}
