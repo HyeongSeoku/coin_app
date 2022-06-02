@@ -1,16 +1,18 @@
-import React, { useCallback, useMemo } from 'react'
-import { useRecoilState } from 'recoil'
-import { searchKeyWordState } from 'states/search'
+import React, { useMemo } from 'react'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { dropDownOpenState, searchKeyWordState } from 'states/search'
 import styles from './dropDown.module.scss'
 
 const DropDownItem = ({ data }: { data: IDropDown }) => {
   const { name, id } = data
   const [keyWord, setKeyWord] = useRecoilState(searchKeyWordState)
+  const setDropDownOpen = useSetRecoilState(dropDownOpenState)
 
   const handleClickDropDown = (e: React.MouseEvent<HTMLDivElement>) => {
     // TODO: id로 이동할 예정
     const { drop } = e.currentTarget.dataset
     setKeyWord(drop!)
+    setDropDownOpen(false)
   }
 
   // TODO : 로직 단순화
