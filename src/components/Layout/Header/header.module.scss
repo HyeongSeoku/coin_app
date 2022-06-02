@@ -1,7 +1,12 @@
 @use 'styles/constants/colors';
 
 .headerContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
   height: 70px;
+  padding: 5px 10px;
   color: colors.$WHITE;
   background-color: colors.$HEADER;
 }
