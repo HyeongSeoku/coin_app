@@ -22,7 +22,7 @@ const DropDownList = () => {
   const filterDropDownList = useCallback(() => {
     if (!keyWord) return []
     const arr = keyWordList.filter((item) =>
-      item.name.replace(/(\s*)/g, '').toLowerCase().startsWith(keyWord.toLowerCase())
+      item.name.replace(/(\s*)/g, '').toLowerCase().startsWith(keyWord.replace(/(\s*)/g, '').toLowerCase())
     )
     return arr
   }, [keyWord, keyWordList])
@@ -32,8 +32,8 @@ const DropDownList = () => {
   }, [filterDropDownList])
 
   return (
-    <div>
-      <ul className={cx(styles.dropDownContainer, { [styles.open]: dropDownOpen })}>
+    <div className={cx(styles.dropDownContainer, { [styles.open]: dropDownOpen })}>
+      <ul>
         {dropDownList.map((item: IDropDown) => (
           <DropDownItem key={`key_word_${item.id}`} data={item} />
         ))}
