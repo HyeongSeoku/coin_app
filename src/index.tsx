@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import Route from 'routes/index'
 import reportWebVitals from './reportWebVitals'
 import { ReactQueryDevtools } from 'react-query/devtools'
+import { RecoilRoot } from 'recoil'
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnMount: false } },
@@ -15,9 +16,11 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools />
-      <BrowserRouter>
-        <Route />
-      </BrowserRouter>
+      <RecoilRoot>
+        <BrowserRouter>
+          <Route />
+        </BrowserRouter>
+      </RecoilRoot>
     </QueryClientProvider>
   </React.StrictMode>
 )
