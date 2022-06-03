@@ -1,0 +1,95 @@
+@use 'styles/constants/colors';
+
+.container {
+  flex-wrap: nowrap;
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .topPriceList {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+  }
+}
+
+.topCoinCard {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  width: 150px;
+  height: 140px;
+  padding: 5px 8px;
+  margin-right: 10px;
+  overflow: hidden;
+  list-style: none;
+  background-color: colors.$WHITE;
+  border-radius: 12px;
+
+  .visualContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    .iconContainer {
+      box-sizing: border-box;
+      width: 48px;
+      height: 50px;
+      margin-bottom: 10px;
+    }
+
+    .graphContainer {
+      flex-grow: 1;
+      margin-left: 10px;
+
+      .graph {
+        width: 75px;
+      }
+
+      .marketContainer {
+        div {
+          display: flex;
+          flex-direction: row;
+        }
+
+        .varianceIcon {
+          margin-left: auto;
+        }
+
+        .marketCapText {
+          margin-right: 10px;
+          margin-left: 5px;
+          font-weight: 500;
+          color: colors.$DOWN;
+        }
+
+        .up {
+          color: colors.$UP;
+        }
+      }
+    }
+  }
+
+  .priceContainer {
+    display: flex;
+    flex-direction: column;
+
+    .symbolText {
+      font-size: 19px;
+      font-weight: 600;
+      line-height: 130%;
+    }
+
+    .priceText {
+      font-size: 16px;
+      line-height: 120%;
+      color: colors.$GRAYA;
+    }
+  }
+}
