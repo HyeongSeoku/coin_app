@@ -1,7 +1,7 @@
 import CoinCard from 'components/CoinCard'
 import { useEffect } from 'react'
 import { useQuery } from 'react-query'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useSetRecoilState } from 'recoil'
 import { getKeywordCoins, getTopp100CoinTickers } from 'services/coin'
 import { coinKeyWordState, coinTickerListState } from 'states/coin'
 
@@ -9,20 +9,14 @@ import styles from './coinTickerList.module.scss'
 
 const CoinTickerList = () => {
   const setCoinTickerList = useSetRecoilState(coinTickerListState)
-
   const setKeyWordList = useSetRecoilState(coinKeyWordState)
-  const keyWordState = useRecoilValue(coinKeyWordState)
 
-  const { data: keyWord } = useQuery(
-    ['#keyWord'],
-    () => getKeywordCoins().then((result) => setKeyWordList(result.splice(0, 500))),
-    {
-      refetchOnWindowFocus: false,
-      suspense: true,
-      cacheTime: Infinity,
-      useErrorBoundary: true,
-    }
-  )
+  useQuery(['#keyWord'], () => getKeywordCoins().then((result) => setKeyWordList(result.splice(0, 500))), {
+    refetchOnWindowFocus: false,
+    suspense: true,
+    cacheTime: Infinity,
+    useErrorBoundary: true,
+  })
 
   const { data: coinTickers } = useQuery(['#top100coinTickers'], () => getTopp100CoinTickers(), {
     refetchOnWindowFocus: false,
@@ -37,6 +31,7 @@ const CoinTickerList = () => {
 
   return (
     <div>
+      <h2> Coin list</h2>
       <ul className={styles.coinListContainer}>
         {coinTickers.map((item: ITickerProps) => (
           <CoinCard

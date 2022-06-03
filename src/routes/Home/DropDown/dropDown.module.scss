@@ -2,16 +2,35 @@
 
 .dropDownContainer {
   position: absolute;
-  top: 3px;
-  width: 150px;
+  top: 50px;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  width: 450px;
   max-height: 70px;
-  padding: 0;
+  margin-right: auto;
+  margin-left: auto;
   overflow: scroll;
-  list-style: none;
-  background-color: colors.$WHITE;
+  visibility: hidden;
+  background-color: colors.$GRAYE;
+
+  ul {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.open {
+  visibility: visible;
 }
 
 .dropDownItem {
+  width: 100%;
+  padding: 0 5px;
+  line-height: 140%;
+
   &:hover {
     background-color: colors.$GRAYA;
   }
