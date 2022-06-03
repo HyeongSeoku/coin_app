@@ -3,16 +3,19 @@
 .cardContainer {
   display: flex;
   flex-direction: row;
-  padding: 0;
+  padding: 10px 0;
   margin-bottom: 15px;
   list-style: none;
+  border-bottom: 1px solid colors.$GRAYD;
 
   .imgContainer {
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 48px;
     height: 50px;
     padding: 4px;
-    text-align: center;
     background-color: white;
     border-radius: 8px;
 
@@ -24,32 +27,53 @@
   .titlContainer {
     display: flex;
     flex-direction: column;
+    width: 100px;
     margin-left: 15px;
 
     .nameText {
-      font-size: 19px;
+      font-size: 21px;
       font-weight: 600;
     }
 
     .symbolText {
-      color: colors.$GRAYA;
+      margin-right: 10px;
+      color: colors.$GRAY6;
     }
   }
 
   .priceContainer {
     display: flex;
     flex-direction: column;
+    width: 100px;
     margin-right: 15px;
     margin-left: auto;
     line-height: 130%;
 
     .priceText {
-      font-size: 18px;
+      margin-right: 10px;
+      margin-left: auto;
+      font-size: 19px;
+      font-weight: 500;
+    }
+  }
+
+  .marketCapContainer {
+    margin-right: 10px;
+    margin-left: auto;
+
+    .varianceIcon {
+      margin-right: 5px;
+      margin-left: auto;
     }
 
     .marketCapText {
       margin-left: auto;
       font-size: 15px;
+      color: colors.$DOWN;
+    }
+
+    .increase {
+      color: colors.$UP;
     }
   }
 }
