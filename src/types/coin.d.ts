@@ -20,7 +20,7 @@ interface ITickerProps {
   first_data_at: string
   last_updated: string
   quotes: {
-    KRW: {
+    USD: {
       price: number
       volume_24h: number
       volume_24h_change_24h: number
