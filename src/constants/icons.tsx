@@ -13,6 +13,7 @@ import {
   Dogecoin,
   Dot,
   Ethereum,
+  Hbtc,
   Hex,
   Ltc,
   Matic,
@@ -54,6 +55,10 @@ interface ICoinProps {
   NEAR: JSX.Element
   UNI: JSX.Element
   TRX: JSX.Element
+  BTCB: JSX.Element
+  THR: JSX.Element
+  PAXG: JSX.Element
+  HBTC: JSX.Element
 
   [key: string]: any
 }
@@ -86,6 +91,7 @@ export const COIN_ICON: ICoinProps = {
   BTCB: <Btcb />,
   THR: <Thr />,
   PAXG: <Paxg />,
+  HBTC: <Hbtc />,
 }
 
 export const DEFAULT_COIN_ICON = <DefaultCoin />
