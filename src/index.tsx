@@ -7,6 +7,8 @@ import reportWebVitals from './reportWebVitals'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { RecoilRoot } from 'recoil'
 
+import './styles/index.scss'
+
 const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnMount: false } },
 })
