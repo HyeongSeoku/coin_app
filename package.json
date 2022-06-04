@@ -28,8 +28,6 @@
     ]
   },
   "dependencies": {
-    "@types/lodash": "^4.14.182",
-    "@types/react-transition-group": "^4.4.4",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
     "dayjs": "^1.11.2",
@@ -42,7 +40,7 @@
     "react-router-dom": "6",
     "react-scripts": "5.0.1",
     "react-transition-group": "^4.4.2",
-    "react-use": "^17.3.2",
+    "react-use": "^17.4.0",
     "recoil": "^0.7.3-alpha.2",
     "store": "^2.0.12",
     "victory": "^36.4.0",
@@ -51,9 +49,11 @@
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",
+    "@types/lodash": "^4.14.182",
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "@types/react-transition-group": "^4.4.4",
     "@types/store": "^2.0.2",
     "babel-eslint": "^10.1.0",
     "eslint": "^8.14.0",
