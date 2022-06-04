@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query'
 import cx from 'classnames'
 
-import { Down, Up } from 'assets/svgs'
+import { DownIcon, UpIcon } from 'assets/svgs'
 import LineChart from 'components/LineChart'
 import { getCoinDetail } from 'services/coin'
 import { calculateDate } from './utils/calculateDate'
@@ -15,16 +15,16 @@ interface IProps {
   id: string
   symbol: string
   price: number
-  market_cap_change_24h: number
+  percentChange24h: number
 }
 
 // TODO: suspense 적용
 
 const TopCoinCard = ({ data }: { data: IProps }) => {
-  const { name, id, price, symbol, market_cap_change_24h: marketCapChange24h } = data
+  const { name, id, price, symbol, percentChange24h } = data
   const [apiStart] = calculateDate()
-  const isIncrease = marketCapChange24h > 0
-  const varianceIcon = isIncrease ? <Up /> : <Down />
+  const isIncrease = percentChange24h > 0
+  const varianceIcon = isIncrease ? <UpIcon /> : <DownIcon />
   const [translatePrice, unit] = transformNumber(price)
   const coinLogo = COIN_ICON[symbol] || DEFAULT_COIN_ICON
 
@@ -51,7 +51,7 @@ const TopCoinCard = ({ data }: { data: IProps }) => {
             <div>
               <span className={styles.varianceIcon}>{varianceIcon}</span>
               <span className={cx(styles.marketCapText, { [styles.up]: isIncrease })}>
-                {Math.abs(marketCapChange24h)}%
+                {Math.abs(percentChange24h)}%
               </span>
             </div>
           </div>
@@ -59,10 +59,10 @@ const TopCoinCard = ({ data }: { data: IProps }) => {
       </div>
       <div className={styles.priceContainer}>
         <span className={styles.symbolText}>{symbol}</span>
-        <span className={styles.priceText}>
-          {translatePrice}
-          {unit}
-        </span>
+        <div>
+          <span className={styles.priceText}>${translatePrice}</span>
+          <span className={styles.priceText}>{unit}</span>
+        </div>
       </div>
     </li>
   )

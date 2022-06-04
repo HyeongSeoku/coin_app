@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 import { coinTickerListState } from 'states/coin'
 import { sortBy } from 'lodash'
@@ -10,13 +10,17 @@ const TopPriceCoinCardList = () => {
   const coinTickerList = useRecoilValue(coinTickerListState)
 
   const top10TickerList = useMemo(() => {
-    const arr = sortBy(coinTickerList, 'quotes.KRW.price').reverse()
+    const arr = sortBy(coinTickerList, 'quotes.USD.price').reverse()
     return arr.splice(0, 10)
+  }, [coinTickerList])
+
+  useEffect(() => {
+    console.log(coinTickerList)
   }, [coinTickerList])
 
   return (
     <div>
-      <h2>Top 10 price</h2>
+      <h2 className={styles.topPriceTitle}>Top 10 price</h2>
       <div className={styles.container}>
         <ul className={styles.topPriceList}>
           {top10TickerList.map((coinData) => (
@@ -25,9 +29,9 @@ const TopPriceCoinCardList = () => {
               data={{
                 name: coinData.name,
                 id: coinData.id,
-                price: coinData.quotes.KRW.price,
+                price: coinData.quotes.USD.price,
                 symbol: coinData.symbol,
-                market_cap_change_24h: coinData.quotes.KRW.market_cap_change_24h,
+                percentChange24h: coinData.quotes.USD.percent_change_24h,
               }}
             />
           ))}

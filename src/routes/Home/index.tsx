@@ -3,14 +3,15 @@ import SearchForm from 'routes/Home/SearchForm'
 import ErrorMessage from 'components/ErrorMessage'
 import { Suspense } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
-import CoinTickerList from './CoinTickerList'
 
-import styles from './home.module.scss'
 import DropDownList from './DropDown'
 import TopCoinCardList from './TopPriceCoinCardList'
 import TodayBestList from './TodayBestList'
 
-const Home = () => {
+import styles from './home.module.scss'
+import CoinTickerList from './CoinTickerList'
+
+const HomePage = () => {
   const handleErrorFallback = ({ error }: { error: Error }) => <ErrorMessage error={error} />
 
   return (
@@ -30,4 +31,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomePage

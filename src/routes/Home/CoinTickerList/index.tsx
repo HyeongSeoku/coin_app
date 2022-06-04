@@ -11,7 +11,7 @@ const CoinTickerList = () => {
   const setCoinTickerList = useSetRecoilState(coinTickerListState)
   const setKeyWordList = useSetRecoilState(coinKeyWordState)
 
-  useQuery(['#keyWord'], () => getKeywordCoins().then((result) => setKeyWordList(result.splice(0, 500))), {
+  useQuery(['#keyWord'], () => getKeywordCoins().then((result) => setKeyWordList(result)), {
     refetchOnWindowFocus: false,
     suspense: true,
     cacheTime: Infinity,
@@ -31,7 +31,6 @@ const CoinTickerList = () => {
 
   return (
     <div>
-      <h2> Coin list</h2>
       <ul className={styles.coinListContainer}>
         {coinTickers.map((item: ITickerProps) => (
           <CoinCard
@@ -39,8 +38,8 @@ const CoinTickerList = () => {
             coinData={{
               name: item.name,
               symbol: item.symbol,
-              price: item.quotes.KRW.price,
-              market_cap_change_24h: item.quotes.KRW.market_cap_change_24h,
+              price: item.quotes.USD.price,
+              percentChange24h: item.quotes.USD.percent_change_24h,
             }}
           />
         ))}
