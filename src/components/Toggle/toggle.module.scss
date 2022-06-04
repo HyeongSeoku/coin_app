@@ -1,0 +1,48 @@
+@use 'styles/constants/colors';
+@use 'styles/mixins/animation';
+
+.radioGroup {
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+  margin: 10px 0;
+
+  .radioItem {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 25px;
+
+    .radioText {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 35px;
+      font-size: 17px;
+      color: colors.$BLACK;
+    }
+
+    .radioBtn {
+      display: none;
+
+      & + .radioText {
+        opacity: 0.4;
+      }
+
+      &:checked + .radioText {
+        background-color: colors.$GRAYD;
+        opacity: 1;
+        @include animation.toggleFadeIn(1s);
+      }
+    }
+  }
+}
+
+.radioBtn:checked {
+  .radioGroup {
+    background-color: #ffffff;
+  }
+}
