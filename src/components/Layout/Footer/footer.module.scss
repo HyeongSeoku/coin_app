@@ -5,8 +5,12 @@
   right: 0;
   bottom: 0;
   left: 0;
-  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
   padding: 5px 10px;
   font-size: 18px;
-  background-color: colors.$GRAY6;
+  background-color: colors.$WHITE;
+  backdrop-filter: blur(3px);
 }
