@@ -6,8 +6,6 @@ interface IHistoryParams {
   interval: string
 }
 
-const COIN_BASE_URL = 'https://api.coinpaprika.com'
-
 export const getKeywordCoins = () =>
   axios.get(`/v1/coins`).then((res) => {
     const spliceRes = res.data.splice(0, 300)

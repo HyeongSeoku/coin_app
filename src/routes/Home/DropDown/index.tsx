@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useMemo } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
+import cx from 'classnames'
+
 import { coinKeyWordState } from 'states/coin'
 import { dropDownOpenState, searchKeyWordState } from 'states/search'
 import DropDownItem from './DropDownItem'
-
-import cx from 'classnames'
 
 import styles from './dropDown.module.scss'
 

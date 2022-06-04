@@ -1,5 +1,5 @@
-import { COLOR } from 'constants/color'
 import { VictoryAxis, VictoryChart, VictoryLine } from 'victory'
+import { COLOR } from 'constants/color'
 
 interface IProps {
   graphData: { timestamp: string; price: number; volume_24h: number; market_cap: number }[]

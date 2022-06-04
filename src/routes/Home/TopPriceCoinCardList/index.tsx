@@ -1,7 +1,8 @@
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
-import { coinTickerListState } from 'states/coin'
 import { sortBy } from 'lodash'
+
+import { coinTickerListState } from 'states/coin'
 import TopCoinCard from './TopCard'
 
 import styles from './topCoinCardList.module.scss'
@@ -12,10 +13,6 @@ const TopPriceCoinCardList = () => {
   const top10TickerList = useMemo(() => {
     const arr = sortBy(coinTickerList, 'quotes.USD.price').reverse()
     return arr.splice(0, 10)
-  }, [coinTickerList])
-
-  useEffect(() => {
-    console.log(coinTickerList)
   }, [coinTickerList])
 
   return (

@@ -1,15 +1,15 @@
-import Loader from 'components/Loader'
-import SearchForm from 'routes/Home/SearchForm'
-import ErrorMessage from 'components/ErrorMessage'
 import { Suspense } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 
+import ErrorMessage from 'components/ErrorMessage'
+import Loader from 'components/Loader'
+import SearchForm from 'routes/Home/SearchForm'
 import DropDownList from './DropDown'
 import TopCoinCardList from './TopPriceCoinCardList'
 import TodayBestList from './TodayBestList'
+import CoinTickerList from './CoinTickerList'
 
 import styles from './home.module.scss'
-import CoinTickerList from './CoinTickerList'
 
 const HomePage = () => {
   const handleErrorFallback = ({ error }: { error: Error }) => <ErrorMessage error={error} />

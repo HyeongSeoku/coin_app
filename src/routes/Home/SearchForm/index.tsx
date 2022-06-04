@@ -1,5 +1,6 @@
 import React from 'react'
 import { useRecoilState } from 'recoil'
+
 import { searchKeyWordState } from 'states/search'
 
 import styles from './searchForm.module.scss'

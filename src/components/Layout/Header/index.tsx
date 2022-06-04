@@ -1,4 +1,3 @@
-import { Logo } from 'assets/svgs'
 import styles from './header.module.scss'
 
 const Header = () => {

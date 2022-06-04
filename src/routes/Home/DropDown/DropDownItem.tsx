@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil'
+
 import { dropDownOpenState, searchKeyWordState } from 'states/search'
+
 import styles from './dropDown.module.scss'
 
 const DropDownItem = ({ data }: { data: IDropDown }) => {
@@ -47,7 +49,7 @@ const DropDownItem = ({ data }: { data: IDropDown }) => {
   }, [keyWord, name])
 
   return (
-    <li className={styles.dropDownItem}>
+    <li className={styles.dropDownItem} data-id={id}>
       <div role='button' tabIndex={0} onClick={handleClickDropDown} data-drop={name}>
         {markText}
       </div>

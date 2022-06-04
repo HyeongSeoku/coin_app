@@ -1,5 +1,5 @@
 import { ActivityIcon, HomeIcon } from 'assets/svgs'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-use'
 import cx from 'classnames'

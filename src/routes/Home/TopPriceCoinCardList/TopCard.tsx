@@ -41,7 +41,7 @@ const TopCoinCard = ({ data }: { data: IProps }) => {
 
   return (
     <li className={styles.topCoinCard}>
-      <div className={styles.visualContainer}>
+      <div className={styles.visualContainer} data-name={name}>
         <div className={styles.iconContainer}>{coinLogo}</div>
         <div className={styles.graphContainer}>
           <div className={styles.graph}>

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useLocation } from 'react-use'
 import { useSetRecoilState } from 'recoil'
+
 import { homeToggleState } from 'states/home'
 
 import styles from './toggle.module.scss'
