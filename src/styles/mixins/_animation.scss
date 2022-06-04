@@ -12,3 +12,31 @@
     transform: rotate(359deg);
   }
 }
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes toggleFadein {
+  from {
+    opacity: 0.3;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@mixin fadeIn($duration) {
+  animation: fadein $duration;
+}
+
+@mixin toggleFadeIn($duration) {
+  animation: toggleFadein $duration;
+}
