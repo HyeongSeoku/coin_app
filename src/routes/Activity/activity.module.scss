@@ -1,0 +1,6 @@
+@use 'styles/constants/colors';
+@use 'styles/mixins/animation';
+
+.activityContainer {
+  @include animation.fadeIn(1s);
+}
