@@ -5,7 +5,6 @@
   flex-direction: row;
   padding: 10px 0;
   margin-bottom: 15px;
-  list-style: none;
   border-bottom: 1px solid colors.$GRAYD;
 
   .imgContainer {
@@ -16,7 +15,7 @@
     width: 48px;
     height: 50px;
     padding: 4px;
-    background-color: white;
+    background-color: colors.$WHITE;
     border-radius: 8px;
 
     svg {
@@ -31,8 +30,10 @@
     margin-left: 15px;
 
     .nameText {
-      font-size: 21px;
+      width: fit-content;
+      font-size: 19px;
       font-weight: 600;
+      white-space: nowrap;
     }
 
     .symbolText {
@@ -69,11 +70,14 @@
     .marketCapText {
       margin-left: auto;
       font-size: 15px;
-      color: colors.$DOWN;
     }
 
     .increase {
       color: colors.$UP;
+    }
+
+    .decrease {
+      color: colors.$DOWN;
     }
   }
 }
