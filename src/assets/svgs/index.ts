@@ -1,7 +1,10 @@
 export { ReactComponent as Logo } from './logo.svg'
 
-export { ReactComponent as Up } from './up.svg'
-export { ReactComponent as Down } from './down.svg'
+export { ReactComponent as UpIcon } from './up.svg'
+export { ReactComponent as DownIcon } from './down.svg'
+export { ReactComponent as NotChangeIcon } from './notChangeIcon.svg'
+export { ReactComponent as HomeIcon } from './home.svg'
+export { ReactComponent as ActivityIcon } from './activity.svg'
 
 export { ReactComponent as Bitcoin } from './coinIcon/bitcoinLogo.svg'
 export { ReactComponent as Ethereum } from './coinIcon/ethereumLogo.svg'
@@ -31,5 +34,6 @@ export { ReactComponent as Shib } from './coinIcon/shibLogo.svg'
 export { ReactComponent as Btcb } from './coinIcon/btcbLogo.svg'
 export { ReactComponent as Thr } from './coinIcon/thrLogo.svg'
 export { ReactComponent as Paxg } from './coinIcon/paxgLogo.svg'
+export { ReactComponent as Hbtc } from './coinIcon/hbtcLogo.svg'
 
 export { ReactComponent as DefaultCoin } from './coinIcon/defaultCoin.svg'
