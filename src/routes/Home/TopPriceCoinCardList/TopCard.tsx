@@ -4,11 +4,12 @@ import cx from 'classnames'
 import { DownIcon, UpIcon } from 'assets/svgs'
 import LineChart from 'components/LineChart'
 import { getCoinDetail } from 'services/coin'
-import { calculateDate } from './utils/calculateDate'
 import { transformNumber } from 'utils/transformNumber'
 
 import styles from './topCoinCardList.module.scss'
 import { COIN_ICON, DEFAULT_COIN_ICON } from 'constants/icons'
+import { Link } from 'react-router-dom'
+import { calculateDate } from 'utils/calculateDate'
 
 interface IProps {
   name: string
@@ -40,31 +41,33 @@ const TopCoinCard = ({ data }: { data: IProps }) => {
   )
 
   return (
-    <li className={styles.topCoinCard}>
-      <div className={styles.visualContainer} data-name={name}>
-        <div className={styles.iconContainer}>{coinLogo}</div>
-        <div className={styles.graphContainer}>
-          <div className={styles.graph}>
-            <LineChart data={{ graphData: chartData!.data, isIncrease }} />
-          </div>
-          <div className={styles.marketContainer}>
-            <div>
-              <span className={styles.varianceIcon}>{varianceIcon}</span>
-              <span className={cx(styles.marketCapText, { [styles.up]: isIncrease })}>
-                {Math.abs(percentChange24h)}%
-              </span>
+    <Link to={`/activity/${name}`} className={styles.cardLink}>
+      <li className={styles.topCoinCard}>
+        <div className={styles.visualContainer} data-name={name}>
+          <div className={styles.iconContainer}>{coinLogo}</div>
+          <div className={styles.graphContainer}>
+            <div className={styles.graph}>
+              <LineChart data={{ graphData: chartData!.data, isIncrease }} />
+            </div>
+            <div className={styles.marketContainer}>
+              <div>
+                <span className={styles.varianceIcon}>{varianceIcon}</span>
+                <span className={cx(styles.marketCapText, { [styles.up]: isIncrease })}>
+                  {Math.abs(percentChange24h)}%
+                </span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className={styles.priceContainer}>
-        <span className={styles.symbolText}>{symbol}</span>
-        <div>
-          <span className={styles.priceText}>${translatePrice}</span>
-          <span className={styles.priceText}>{unit}</span>
+        <div className={styles.priceContainer}>
+          <span className={styles.symbolText}>{symbol}</span>
+          <div>
+            <span className={styles.priceText}>${translatePrice}</span>
+            <span className={styles.priceText}>{unit}</span>
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
+    </Link>
   )
 }
 
