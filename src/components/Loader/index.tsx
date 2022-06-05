@@ -6,7 +6,7 @@ const Loader = () => {
   return (
     <div className={styles.loaderContainer}>
       <LoaderIcon className={styles.loadingIcon} />
-      <span>로딩중...</span>
+      <span>로딩중....</span>
     </div>
   )
 }

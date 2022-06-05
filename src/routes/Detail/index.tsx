@@ -1,24 +1,25 @@
 import { COIN_ICON, DEFAULT_COIN_ICON } from 'constants/icons'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { useQuery } from 'react-query'
 import { getCoinDetail, getCoinDetailTicker } from 'services/coin'
 import cx from 'classnames'
 
-import styles from './detail.module.scss'
 import { EmptyStarIcon } from 'assets/svgs'
 import { calculateDate } from 'utils/calculateDate'
 import { VictoryAxis, VictoryChart, VictoryLine } from 'victory'
+
+import styles from './detail.module.scss'
 
 interface IProps {
   idState: string
 }
 
-interface IGraphProps {
-  timestamp: string
-  price: number
-  volume_24h: number
-  market_cap: number
-}
+// interface IGraphProps {
+//   timestamp: string
+//   price: number
+//   volume_24h: number
+//   market_cap: number
+// }
 
 const Detail = ({ idState }: IProps) => {
   const [apiStart] = calculateDate()
@@ -47,10 +48,6 @@ const Detail = ({ idState }: IProps) => {
     if (COIN_ICON[detailData.symbol] !== undefined) return COIN_ICON[detailData.symbol]
     return DEFAULT_COIN_ICON
   }, [detailData])
-
-  useEffect(() => {
-    console.log(detailChartData)
-  }, [detailChartData])
 
   return (
     <div className={styles.container}>

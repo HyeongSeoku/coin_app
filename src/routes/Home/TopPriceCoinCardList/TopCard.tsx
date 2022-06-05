@@ -19,8 +19,6 @@ interface IProps {
   percentChange24h: number
 }
 
-// TODO: suspense 적용
-
 const TopCoinCard = ({ data }: { data: IProps }) => {
   const { name, id, price, symbol, percentChange24h } = data
   const [apiStart] = calculateDate()
