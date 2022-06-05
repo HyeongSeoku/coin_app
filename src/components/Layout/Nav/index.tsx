@@ -42,11 +42,6 @@ const Nav = () => {
           <SearchIcon />
         </div>
       </Link>
-      <Link to='/activity'>
-        <div className={cx(styles.navIconContainer, { [styles.selected]: selectedNav! === '' })}>
-          <ActivityIcon />
-        </div>
-      </Link>
     </nav>
   )
 }

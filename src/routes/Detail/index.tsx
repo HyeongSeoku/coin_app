@@ -1,13 +1,16 @@
 import { COIN_ICON, DEFAULT_COIN_ICON } from 'constants/icons'
 import { useEffect, useMemo } from 'react'
 import { useQuery } from 'react-query'
-import { getCoinDetail, getCoinDetailTicker } from 'services/coin'
+import { VictoryAxis, VictoryChart, VictoryLine, VictoryTooltip } from 'victory'
+import { Link } from 'react-router-dom'
+import dayjs from 'dayjs'
 import cx from 'classnames'
 
-import styles from './detail.module.scss'
+import { getCoinDetail, getCoinDetailTicker } from 'services/coin'
 import { EmptyStarIcon } from 'assets/svgs'
 import { calculateDate } from 'utils/calculateDate'
-import { VictoryAxis, VictoryChart, VictoryLine } from 'victory'
+
+import styles from './detail.module.scss'
 
 interface IProps {
   idState: string
@@ -31,9 +34,19 @@ const Detail = ({ idState }: IProps) => {
     useErrorBoundary: true,
   })
 
+  // TODO: logic error fix
   const { data: detailChartData } = useQuery(
     [`#chartData${detailData.id}`],
-    () => getCoinDetail({ coinId: detailData.id, start: apiStart, interval: '1h' }),
+    () =>
+      getCoinDetail({ coinId: detailData.id, start: apiStart, interval: '1h' }).then((res) => {
+        const result = res.data.map((item: IGraphProps) => ({
+          timestamp: dayjs(item.timestamp).format('HH'),
+          price: item.price,
+          volume_24h: item.volume_24h,
+          market_cap: item.market_cap,
+        }))
+        return result
+      }),
     {
       refetchOnWindowFocus: false,
       suspense: true,
@@ -55,7 +68,9 @@ const Detail = ({ idState }: IProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.headerContainer}>
-        <div className={cx(styles.headerItem, styles.backIcon)}>뒤로</div>
+        <div className={cx(styles.headerItem, styles.backIcon)}>
+          <Link to='/'>뒤로</Link>
+        </div>
         <div className={cx(styles.headerItem, styles.coinIconContainer)}>
           <span className={styles.coinLogo}>{coinLogo}</span>
           <span className={styles.coinText}>{detailData.symbol}</span>
@@ -74,17 +89,34 @@ const Detail = ({ idState }: IProps) => {
             <span>{detailData.quotes.USD.percent_change_24h}</span>
           </div>
 
-          <div>
-            <VictoryChart domainPadding={0}>
-              <VictoryAxis
-                style={{
-                  axis: { stroke: 'transparent' },
-                  ticks: { stroke: 'transparent' },
-                  tickLabels: { fill: 'transparent' },
-                }}
-              />
-              <VictoryLine data={detailChartData!.data} x='timestamp' y='price' />
-            </VictoryChart>
+          <div className={styles.chartContainer}>
+            <div className={styles.chart}>
+              <VictoryChart domainPadding={0}>
+                <VictoryAxis
+                  dependentAxis
+                  style={{
+                    axis: { stroke: 'transparent' },
+                    tickLabels: { fontSize: 12, padding: 20, fill: '#cccccc' },
+                    ticks: { stroke: '#cccccc', size: 0 },
+                    grid: { stroke: '#eeeeee' },
+                  }}
+                />
+                <VictoryLine
+                  data={detailChartData}
+                  style={{ labels: { fontSize: 10 } }}
+                  x='timestamp'
+                  y='price'
+                  labelComponent={<VictoryTooltip dy={0} centerOffset={{ x: 25 }} />}
+                />
+                <VictoryAxis
+                  style={{
+                    axis: { strokeWidth: 0.5, stroke: '#cccccc' },
+                    tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
+                    ticks: { stroke: '#cccccc', size: 0 },
+                  }}
+                />
+              </VictoryChart>
+            </div>
           </div>
         </div>
       </div>

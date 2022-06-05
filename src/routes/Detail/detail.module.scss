@@ -16,7 +16,11 @@
       justify-content: center;
 
       .coinLogo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 40px;
+        height: 40px;
       }
 
       .coinText {
@@ -34,5 +38,15 @@
 
   .contentContainer {
     line-height: 140%;
+
+    .chartContainer {
+      width: 100%;
+      padding: auto;
+      overflow-x: scroll;
+
+      .chart {
+        width: 700px;
+      }
+    }
   }
 }
