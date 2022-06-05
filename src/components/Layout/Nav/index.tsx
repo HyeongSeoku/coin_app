@@ -1,4 +1,4 @@
-import { ActivityIcon, HomeIcon } from 'assets/svgs'
+import { ActivityIcon, HomeIcon, SearchIcon } from 'assets/svgs'
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-use'
@@ -15,6 +15,8 @@ const Nav = () => {
   const detectLocation = (loc: string) => {
     if (loc === '/') return 'home'
     if (loc.includes('activity')) return 'activity'
+    if (loc.includes('search')) return 'search'
+
     return 'home'
   }
 
@@ -35,9 +37,9 @@ const Nav = () => {
           <ActivityIcon />
         </div>
       </Link>
-      <Link to='activity'>
-        <div className={cx(styles.navIconContainer, { [styles.selected]: selectedNav! === '' })}>
-          <ActivityIcon />
+      <Link to='search'>
+        <div className={cx(styles.navIconContainer, { [styles.selected]: selectedNav! === 'search' })}>
+          <SearchIcon />
         </div>
       </Link>
       <Link to='/activity'>
