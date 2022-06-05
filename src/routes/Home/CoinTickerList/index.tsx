@@ -31,6 +31,7 @@ const CoinTickerList = () => {
 
   return (
     <div>
+      <h2 className={styles.coinListTitle}>Coin List</h2>
       <ul className={styles.coinListContainer}>
         {coinTickers.map((item: ITickerProps) => (
           <CoinCard
