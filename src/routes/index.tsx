@@ -1,7 +1,6 @@
 import Layout from 'components/Layout'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import ActivityPage from './Activity'
-import Detail from './Detail'
 import HomePage from './Home'
 import Search from './Search'
 

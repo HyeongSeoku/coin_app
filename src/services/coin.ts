@@ -16,16 +16,16 @@ export const getKeywordCoins = () =>
     return result
   })
 
-export const getTop100CoinList = () => axios.get(`${BASE_URL}/v1/coins`).then((res) => res.data.splice(0, 100))
+export const getTop100CoinList = () => axios.get(`/v1/coins`).then((res) => res.data.splice(0, 100))
 
-export const getCoinList = () => axios.get(`${BASE_URL}/v1/coins`)
+export const getCoinList = () => axios.get(`/v1/coins`)
 
-export const getTopp100CoinTickers = () => axios.get(`${BASE_URL}/v1/tickers`).then((res) => res.data.splice(0, 100))
+export const getTopp100CoinTickers = () => axios.get(`/v1/tickers`).then((res) => res.data.splice(0, 100))
 
-export const getCoinTickers = () => axios.get(`${BASE_URL}/v1/tickers`)
+export const getCoinTickers = () => axios.get(`/v1/tickers`)
 
 export const getCoinDetail = (params: IHistoryParams) =>
-  axios.get(`${BASE_URL}/v1/tickers/${params.coinId}/historical`, {
+  axios.get(`/v1/tickers/${params.coinId}/historical`, {
     params: {
       start: params.start,
       interval: params.interval,
@@ -33,4 +33,6 @@ export const getCoinDetail = (params: IHistoryParams) =>
   })
 
 export const getCoinDetailTicker = (target: string) =>
-  axios.get(`${BASE_URL}/v1/tickers`).then((res) => res.data.find((item: ITickerProps) => item.name === target))
+  axios.get(`/v1/tickers`).then((res) => res.data.find((item: ITickerProps) => item.name === target))
+
+export const get300CoinTickers = () => axios.get(`/v1/tickers`).then((res) => res.data.splice(0, 300))
