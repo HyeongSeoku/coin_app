@@ -31,19 +31,16 @@ const Detail = ({ idState }: IProps) => {
     useErrorBoundary: true,
   })
 
-  // const { data: detailChartData } = useQuery(
-  //   [`#chartData${detailData.id}`],
-  //   () =>
-  //     getCoinDetail({ coinId: detailData.id, start: apiStart, interval: '1h' }).then((res) =>
-  //       res.data.map((item: IGraphProps) => {item.timestamp,...item})
-  //     ),
-  //   {
-  //     refetchOnWindowFocus: false,
-  //     suspense: true,
-  //     cacheTime: Infinity,
-  //     useErrorBoundary: true,
-  //   }
-  // )
+  const { data: detailChartData } = useQuery(
+    [`#chartData${detailData.id}`],
+    () => getCoinDetail({ coinId: detailData.id, start: apiStart, interval: '1h' }),
+    {
+      refetchOnWindowFocus: false,
+      suspense: true,
+      cacheTime: Infinity,
+      useErrorBoundary: true,
+    }
+  )
 
   const coinLogo = useMemo(() => {
     if (!detailData) return DEFAULT_COIN_ICON
@@ -96,3 +93,6 @@ const Detail = ({ idState }: IProps) => {
 }
 
 export default Detail
+function detailChartData(detailChartData: any) {
+  throw new Error('Function not implemented.')
+}
