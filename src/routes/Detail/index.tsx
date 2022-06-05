@@ -93,6 +93,3 @@ const Detail = ({ idState }: IProps) => {
 }
 
 export default Detail
-function detailChartData(detailChartData: any) {
-  throw new Error('Function not implemented.')
-}
