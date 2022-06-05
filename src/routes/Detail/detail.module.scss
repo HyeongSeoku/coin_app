@@ -1,0 +1,37 @@
+.container {
+  .headerContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 0;
+
+    .headerItem {
+      flex-grow: 1;
+    }
+
+    .coinIconContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+
+      .coinLogo {
+        width: 40px;
+      }
+
+      .coinText {
+        margin-left: 10px;
+        font-weight: 500;
+      }
+    }
+
+    .starIconContainer {
+      .starIcon {
+        margin-left: auto;
+      }
+    }
+  }
+
+  .contentContainer {
+  }
+}

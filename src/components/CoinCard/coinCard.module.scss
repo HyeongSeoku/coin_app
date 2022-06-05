@@ -1,5 +1,9 @@
 @use 'styles/constants/colors';
 
+.cardLink {
+  color: colors.$GRAY800;
+}
+
 .cardContainer {
   display: flex;
   flex-direction: row;

@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+import { createSearchParams, useNavigate } from 'react-router-dom'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 
 import { dropDownOpenState, searchKeyWordState } from 'states/search'
@@ -7,14 +8,15 @@ import styles from './dropDown.module.scss'
 
 const DropDownItem = ({ data }: { data: IDropDown }) => {
   const { name, id } = data
+  const navigate = useNavigate()
   const [keyWord, setKeyWord] = useRecoilState(searchKeyWordState)
   const setDropDownOpen = useSetRecoilState(dropDownOpenState)
 
   const handleClickDropDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    // TODO: id로 이동할 예정
     const { drop } = e.currentTarget.dataset
     setKeyWord(drop!)
     setDropDownOpen(false)
+    navigate({ pathname: '/search', search: createSearchParams({ name: drop! }).toString() })
   }
 
   // TODO : 로직 단순화

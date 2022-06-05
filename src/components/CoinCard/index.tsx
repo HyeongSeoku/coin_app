@@ -1,11 +1,12 @@
-import { DownIcon, NotChangeIcon, UpIcon } from 'assets/svgs'
+import { useMemo } from 'react'
+import { DownIcon, EmptyStarIcon, NotChangeIcon, StarIcon, UpIcon } from 'assets/svgs'
 import { COIN_ICON, DEFAULT_COIN_ICON } from 'constants/icons'
 import { transformNumber } from 'utils/transformNumber'
 
 import cx from 'classnames'
 
 import styles from './coinCard.module.scss'
-import { useMemo } from 'react'
+import { Link } from 'react-router-dom'
 
 interface ICoinCard {
   name: string
@@ -36,31 +37,36 @@ const CoinCard = ({ coinData }: { coinData: ICoinCard }) => {
   }, [percentChange24h])
 
   return (
-    <li className={styles.cardContainer}>
-      <div className={styles.imgContainer}>{coinLogo}</div>
-      <div className={styles.titlContainer}>
-        <span className={styles.nameText}>{name}</span>
-        <span className={styles.symbolText}>{symbol}</span>
-      </div>
-      <div className={styles.priceContainer}>
-        <span className={styles.priceText}>
-          ${translatePrice}
-          {unit}
-        </span>
-        <div className={styles.marketCapContainer}>
-          <span className={styles.varianceIcon}>{varianceIcon}</span>
-          <span
-            className={cx(
-              styles.marketCapText,
-              { [styles.increase]: varianceText === 'up' },
-              { [styles.decrease]: varianceText === 'down' }
-            )}
-          >
-            {percentChange24h}%
-          </span>
+    <Link to={`/activity/${name}`} className={styles.cardLink}>
+      <li className={styles.cardContainer}>
+        <div className={styles.imgContainer}>{coinLogo}</div>
+        <div className={styles.titlContainer}>
+          <span className={styles.nameText}>{name}</span>
+          <span className={styles.symbolText}>{symbol}</span>
         </div>
-      </div>
-    </li>
+        <div className={styles.priceContainer}>
+          <span className={styles.priceText}>
+            ${translatePrice}
+            {unit}
+          </span>
+          <div className={styles.marketCapContainer}>
+            <span className={styles.varianceIcon}>{varianceIcon}</span>
+            <span
+              className={cx(
+                styles.marketCapText,
+                { [styles.increase]: varianceText === 'up' },
+                { [styles.decrease]: varianceText === 'down' }
+              )}
+            >
+              {percentChange24h}%
+            </span>
+          </div>
+        </div>
+        <div>
+          <EmptyStarIcon />
+        </div>
+      </li>
+    </Link>
   )
 }
 

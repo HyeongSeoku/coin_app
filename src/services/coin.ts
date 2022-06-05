@@ -31,3 +31,6 @@ export const getCoinDetail = (params: IHistoryParams) =>
       interval: params.interval,
     },
   })
+
+export const getCoinDetailTicker = (target: string) =>
+  axios.get(`${BASE_URL}/v1/tickers`).then((res) => res.data.find((item: ITickerProps) => item.name === target))

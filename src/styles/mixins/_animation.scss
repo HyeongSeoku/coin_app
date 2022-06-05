@@ -40,3 +40,7 @@
 @mixin toggleFadeIn($duration) {
   animation: toggleFadein $duration;
 }
+
+@mixin rotateAnimation($duration) {
+  animation: rotation $duration ease-in-out infinite;
+}

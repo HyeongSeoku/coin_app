@@ -1,3 +1,4 @@
+import Modal from 'components/Modal'
 import { Outlet } from 'react-router-dom'
 
 import Footer from './Footer'
@@ -8,6 +9,7 @@ import styles from './layout.module.scss'
 const Layout = () => {
   return (
     <div className={styles.layoutBackground}>
+      <Modal />
       <div className={styles.layoutContainer}>
         <Header />
         <main className={styles.mainContainer}>
