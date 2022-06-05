@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { DownIcon, EmptyStarIcon, NotChangeIcon, StarIcon, UpIcon } from 'assets/svgs'
+import { DownIcon, EmptyStarIcon, NotChangeIcon, UpIcon } from 'assets/svgs'
 import { COIN_ICON, DEFAULT_COIN_ICON } from 'constants/icons'
 import { transformNumber } from 'utils/transformNumber'
 
