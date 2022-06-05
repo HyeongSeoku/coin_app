@@ -14,10 +14,10 @@ interface IProps {
 }
 
 interface IGraphProps {
- timestamp: string
- price: number 
- volume_24h: number 
- market_cap: number 
+  timestamp: string
+  price: number
+  volume_24h: number
+  market_cap: number
 }
 
 const Detail = ({ idState }: IProps) => {
@@ -33,10 +33,7 @@ const Detail = ({ idState }: IProps) => {
 
   const { data: detailChartData } = useQuery(
     [`#chartData${detailData.id}`],
-    () =>
-      getCoinDetail({ coinId: detailData.id, start: apiStart, interval: '1h' }).then((res) => 
-        res.data.map((item: IGraphProps) => {item.timestamp,...item})
-      ),
+    () => getCoinDetail({ coinId: detailData.id, start: apiStart, interval: '1h' }),
     {
       refetchOnWindowFocus: false,
       suspense: true,
