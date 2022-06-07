@@ -2,17 +2,23 @@ import { useCallback, useEffect, useMemo } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import cx from 'classnames'
 
-import { coinKeyWordState } from 'states/coin'
 import { dropDownOpenState, searchKeyWordState } from 'states/search'
 import DropDownItem from './DropDownItem'
 
 import styles from './dropDown.module.scss'
+import { getKeywordCoins } from 'services/coin'
+import { useQuery } from 'react-query'
 
 const DropDownList = () => {
   const keyWord = useRecoilValue(searchKeyWordState)
-  const keyWordList = useRecoilValue(coinKeyWordState)
-
   const [dropDownOpen, setDropDownOpen] = useRecoilState(dropDownOpenState)
+
+  const { data: keyWordList } = useQuery(['#keyWord'], () => getKeywordCoins(), {
+    refetchOnWindowFocus: false,
+    suspense: true,
+    cacheTime: Infinity,
+    useErrorBoundary: true,
+  })
 
   useEffect(() => {
     if (keyWord === '') setDropDownOpen(false)
@@ -21,7 +27,7 @@ const DropDownList = () => {
 
   const filterDropDownList = useCallback(() => {
     if (!keyWord) return []
-    const arr = keyWordList.filter((item) =>
+    const arr = keyWordList!.filter((item) =>
       item.name.replace(/(\s*)/g, '').toLowerCase().startsWith(keyWord.replace(/(\s*)/g, '').toLowerCase())
     )
     return arr
