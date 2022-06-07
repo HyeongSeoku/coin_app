@@ -16,16 +16,11 @@ interface IProps {
   idState: string
 }
 
-interface IGraphProps {
-  timestamp: string
-  price: number
-  volume_24h: number
-  market_cap: number
-}
+// TODO:토글에 따라 그래프 데이터 다르게 받아오는 기능 추가 구현
+// TODO: 그래프 디자인 세부 변경 label padding, 그래프 색상, 등등
 
 const Detail = ({ idState }: IProps) => {
   const [apiStart] = calculateDate()
-
   const { data: detailData } = useQuery([`${idState}detailData`, idState], () => getCoinDetailTicker(idState), {
     refetchOnWindowFocus: false,
     staleTime: 60000,
@@ -34,19 +29,12 @@ const Detail = ({ idState }: IProps) => {
     useErrorBoundary: true,
   })
 
+  const { price, percent_change_24h: percentChange24h } = detailData.quotes.USD
+  const { symbol, name } = detailData
+
   const { data: detailChartData } = useQuery(
     [`#chartData${detailData.id}`, detailData.id],
-    () =>
-      getCoinDetail({ coinId: detailData.id, start: apiStart, interval: '1h' }).then((res) => {
-        const result = res.data.map((item: IGraphProps) => ({
-          timestamp: dayjs(item.timestamp).format('YYYY.MM.DD HH:mm:ss'),
-          // timestamp: item.timestamp,
-          price: item.price,
-          volume_24h: item.volume_24h,
-          market_cap: item.market_cap,
-        }))
-        return result
-      }),
+    () => getCoinDetail({ coinId: detailData.id, start: apiStart, interval: '1h' }).then((res) => res.data),
     {
       refetchOnWindowFocus: false,
       suspense: true,
@@ -72,51 +60,52 @@ const Detail = ({ idState }: IProps) => {
         </div>
         <div className={cx(styles.headerItem, styles.coinIconContainer)}>
           <span className={styles.coinLogo}>{coinLogo}</span>
-          <span className={styles.coinText}>{detailData.symbol}</span>
+          <span className={styles.coinText}>{symbol}</span>
         </div>
         <div className={cx(styles.headerItem, styles.starIconContainer)}>
           <EmptyStarIcon className={styles.starIcon} />
         </div>
       </div>
-
       <div className={styles.contentContainer}>
-        <div>{detailData.name}</div>
-        <div>
-          <span>{detailData.quotes.USD.price}</span>
-          <div>
+        <div className={styles.name}>{name}</div>
+        <div className={styles.priceContainer}>
+          <span className={styles.priceText}>{price.toFixed(2)}$</span>
+          <div className={styles.percentContainer}>
             <span>아이콘</span>
-            <span>{detailData.quotes.USD.percent_change_24h}</span>
+            <span className={styles.percentText}>{percentChange24h}</span>
           </div>
+        </div>
+        <div className={styles.toggleContainer}>토글 영역</div>
 
-          <div className={styles.chartContainer}>
-            <div className={styles.chart}>
-              <VictoryChart domainPadding={0}>
-                <VictoryAxis
-                  dependentAxis
-                  style={{
-                    axis: { stroke: 'transparent' },
-                    tickLabels: { fontSize: 12, padding: 20, fill: '#cccccc' },
-                    ticks: { stroke: '#cccccc', size: 0 },
-                    grid: { stroke: '#eeeeee' },
-                  }}
-                />
-                <VictoryLine
-                  data={detailChartData}
-                  style={{ labels: { fontSize: 10 } }}
-                  x='timestamp'
-                  y='price'
-                  labelComponent={<VictoryTooltip dy={0} centerOffset={{ x: 25 }} />}
-                />
-                <VictoryAxis
-                  tickFormat={(y) => dayjs(y).format('HH')}
-                  style={{
-                    axis: { strokeWidth: 0.5, stroke: '#cccccc' },
-                    tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
-                    ticks: { stroke: '#cccccc', size: 0 },
-                  }}
-                />
-              </VictoryChart>
-            </div>
+        <div className={styles.chartContainer}>
+          <div className={styles.chart}>
+            <VictoryChart domainPadding={0} padding={{ top: 30, bottom: 30, right: 50, left: 60 }}>
+              <VictoryAxis
+                dependentAxis
+                style={{
+                  axis: { stroke: 'transparent' },
+                  tickLabels: { fontSize: 12, padding: 20, fill: '#cccccc' },
+                  ticks: { stroke: '#cccccc', size: 0 },
+                  grid: { stroke: '#eeeeee' },
+                }}
+              />
+              <VictoryLine
+                data={detailChartData}
+                x='timestamp'
+                y='price'
+                domainPadding={{ x: 0, y: 0 }}
+                style={{ labels: { fontSize: 10, padding: 10 }, data: { strokeWidth: 1, stroke: '#008000' } }}
+                labelComponent={<VictoryTooltip dy={0} centerOffset={{ x: 25 }} />}
+              />
+              <VictoryAxis
+                tickFormat={(y) => dayjs(y).format('HH')}
+                style={{
+                  axis: { strokeWidth: 0 },
+                  tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
+                  ticks: { stroke: '#cccccc', size: 0 },
+                }}
+              />
+            </VictoryChart>
           </div>
         </div>
       </div>
