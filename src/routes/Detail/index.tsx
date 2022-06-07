@@ -34,13 +34,13 @@ const Detail = ({ idState }: IProps) => {
     useErrorBoundary: true,
   })
 
-  // TODO: logic error fix
   const { data: detailChartData } = useQuery(
-    [`#chartData${detailData.id}`],
+    [`#chartData${detailData.id}`, detailData.id],
     () =>
       getCoinDetail({ coinId: detailData.id, start: apiStart, interval: '1h' }).then((res) => {
         const result = res.data.map((item: IGraphProps) => ({
-          timestamp: dayjs(item.timestamp).format('HH'),
+          timestamp: dayjs(item.timestamp).format('YYYY.MM.DD HH:mm:ss'),
+          // timestamp: item.timestamp,
           price: item.price,
           volume_24h: item.volume_24h,
           market_cap: item.market_cap,
@@ -52,6 +52,9 @@ const Detail = ({ idState }: IProps) => {
       suspense: true,
       cacheTime: Infinity,
       useErrorBoundary: true,
+      onSuccess: (res) => {
+        console.log(res)
+      },
     }
   )
 
@@ -105,6 +108,7 @@ const Detail = ({ idState }: IProps) => {
                   labelComponent={<VictoryTooltip dy={0} centerOffset={{ x: 25 }} />}
                 />
                 <VictoryAxis
+                  tickFormat={(y) => dayjs(y).format('HH')}
                   style={{
                     axis: { strokeWidth: 0.5, stroke: '#cccccc' },
                     tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
