@@ -7,10 +7,10 @@ import { COIN_ICON, DEFAULT_COIN_ICON } from 'constants/icons'
 import { getCoinDetail, getCoinDetailTicker } from 'services/coin'
 import { BackLogo, DownIcon, EmptyStarIcon, UpIcon } from 'assets/svgs'
 import { calculateDate } from 'utils/calculateDate'
+import { fixedNumber } from 'utils/transformNumber'
 import DetailChart from './DetailChart'
 
 import styles from './detail.module.scss'
-import { fixedNumber } from 'utils/transformNumber'
 
 interface IProps {
   idState: string
@@ -45,9 +45,6 @@ const Detail = ({ idState }: IProps) => {
       suspense: true,
       cacheTime: Infinity,
       useErrorBoundary: true,
-      onSuccess: (res) => {
-        console.log(res)
-      },
     }
   )
 
