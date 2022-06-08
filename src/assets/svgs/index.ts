@@ -1,4 +1,4 @@
-export { ReactComponent as Logo } from './logo.svg'
+export { ReactComponent as MainLogo } from './mainLogo.svg'
 
 export { ReactComponent as UpIcon } from './up.svg'
 export { ReactComponent as DownIcon } from './down.svg'
@@ -9,6 +9,7 @@ export { ReactComponent as SearchIcon } from './searchIcon.svg'
 export { ReactComponent as StarIcon } from './star.svg'
 export { ReactComponent as EmptyStarIcon } from './emptyStar.svg'
 export { ReactComponent as LoaderIcon } from './loader.svg'
+export { ReactComponent as BackLogo } from './goBackLogo.svg'
 
 export { ReactComponent as Bitcoin } from './coinIcon/bitcoinLogo.svg'
 export { ReactComponent as Ethereum } from './coinIcon/ethereumLogo.svg'
