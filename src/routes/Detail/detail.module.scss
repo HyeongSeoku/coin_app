@@ -1,12 +1,27 @@
+@use 'styles/constants/colors';
+
 .container {
   .headerContainer {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     padding: 10px 0;
 
-    .headerItem {
-      flex-grow: 1;
+    .backIcon {
+      stroke: colors.$GRAYA;
+
+      &:hover {
+        stroke: colors.$BLACK;
+      }
+    }
+
+    .starIcon {
+      fill: colors.$GRAYA;
+
+      &:hover {
+        fill: colors.$BLACK;
+      }
     }
 
     .coinIconContainer {
@@ -25,11 +40,14 @@
 
       .coinText {
         margin-left: 10px;
+        font-size: 18px;
         font-weight: 500;
       }
     }
 
     .starIconContainer {
+      cursor: pointer;
+
       .starIcon {
         margin-left: auto;
       }
@@ -39,13 +57,59 @@
   .contentContainer {
     line-height: 140%;
 
-    .chartContainer {
+    .name {
+      margin-left: 4px;
+      font-size: 20px;
+      line-height: 140%;
+    }
+
+    .priceContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .priceText {
+        margin-right: auto;
+        font-size: 30px;
+        font-weight: 600;
+      }
+
+      .percentContainer {
+        display: flex;
+        flex-direction: column;
+
+        .percentLogo {
+          margin-left: auto;
+        }
+
+        .percentText {
+          font-size: 20px;
+        }
+      }
+    }
+
+    .chartWrapper {
       width: 100%;
       padding: auto;
       overflow-x: scroll;
+      overflow-y: hidden;
 
       .chart {
         width: 700px;
+      }
+    }
+
+    .chartGradient {
+      position: relative;
+
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 15%;
+        height: 100%;
+        content: '';
+        background: linear-gradient(to right, rgba(colors.$WHITE, 0%), rgba(colors.$WHITE, 100%));
       }
     }
   }

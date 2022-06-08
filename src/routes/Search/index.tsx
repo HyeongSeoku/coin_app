@@ -7,8 +7,11 @@ import SearchForm from 'routes/Home/SearchForm'
 import { dropDownOpenState } from 'states/search'
 
 import styles from './search.module.scss'
+import { Suspense } from 'react'
+import Loader from 'components/Loader'
+import DefaultList from './DefaultList'
 
-const Search = () => {
+const SearchPage = () => {
   const [searchParam] = useSearchParams()
   const currentKeyword = searchParam.get('name')
   const setDropDownState = useSetRecoilState(dropDownOpenState)
@@ -19,13 +22,16 @@ const Search = () => {
 
   return (
     <div>
-      <div className={styles.searchContainer}>
-        <SearchForm />
-        <DropDownList />
-      </div>
-      <div>{currentKeyword}</div>
+      <Suspense fallback={<Loader />}>
+        <div className={styles.searchContainer}>
+          <SearchForm />
+          <DropDownList />
+        </div>
+        <div>{currentKeyword}</div>
+        {!currentKeyword && <DefaultList />}
+      </Suspense>
     </div>
   )
 }
 
-export default Search
+export default SearchPage

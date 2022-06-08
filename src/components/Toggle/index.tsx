@@ -26,7 +26,7 @@ const Toggle = ({ toggleData }: { toggleData: IToggleProps[] }) => {
   return (
     <div className={styles.radioGroup}>
       {toggleData.map((toggleItem) => (
-        <div className={styles.radioItem} key={`toggle_${toggleItem.id}`}>
+        <div role='button' className={styles.radioItem} key={`toggle_${toggleItem.id}`}>
           <input
             className={styles.radioBtn}
             type='radio'

@@ -16,12 +16,12 @@ const HomePage = () => {
 
   return (
     <div className={styles.homeContainer}>
-      <div className={styles.searchContainer}>
-        <SearchForm />
-        <DropDownList />
-      </div>
       <Suspense fallback={<Loader />}>
         <ErrorBoundary fallbackRender={handleErrorFallback}>
+          <div className={styles.searchContainer}>
+            <SearchForm />
+            <DropDownList />
+          </div>
           <TodayBestList />
           <TopCoinCardList />
           <CoinTickerList />

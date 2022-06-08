@@ -41,3 +41,10 @@ interface ITickerProps {
     }
   }
 }
+
+interface IChart {
+  market_cap: number
+  price: number
+  timestamp: string
+  volume_24h: number
+}

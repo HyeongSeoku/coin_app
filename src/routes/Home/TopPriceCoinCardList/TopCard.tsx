@@ -16,13 +16,13 @@ interface IProps {
   id: string
   symbol: string
   price: number
-  percentChange24h: number
+  percentChange1h: number
 }
 
 const TopCoinCard = ({ data }: { data: IProps }) => {
-  const { name, id, price, symbol, percentChange24h } = data
+  const { name, id, price, symbol, percentChange1h } = data
   const [apiStart] = calculateDate()
-  const isIncrease = percentChange24h > 0
+  const isIncrease = percentChange1h > 0
   const varianceIcon = isIncrease ? <UpIcon /> : <DownIcon />
   const [translatePrice, unit] = transformNumber(price)
   const coinLogo = COIN_ICON[symbol] || DEFAULT_COIN_ICON
@@ -51,7 +51,7 @@ const TopCoinCard = ({ data }: { data: IProps }) => {
               <div>
                 <span className={styles.varianceIcon}>{varianceIcon}</span>
                 <span className={cx(styles.marketCapText, { [styles.up]: isIncrease })}>
-                  {Math.abs(percentChange24h)}%
+                  {Math.abs(percentChange1h)}%
                 </span>
               </div>
             </div>

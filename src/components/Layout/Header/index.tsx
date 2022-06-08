@@ -1,4 +1,4 @@
-import { Logo } from 'assets/svgs'
+import { MainLogo } from 'assets/svgs'
 import { Link } from 'react-router-dom'
 import styles from './header.module.scss'
 
@@ -7,7 +7,7 @@ const Header = () => {
     <header className={styles.headerContainer}>
       <div className={styles.logoContainer}>
         <Link to='/'>
-          <Logo />
+          <MainLogo />
         </Link>
       </div>
     </header>

@@ -2,21 +2,13 @@ import CoinCard from 'components/CoinCard'
 import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { useSetRecoilState } from 'recoil'
-import { getKeywordCoins, getTopp100CoinTickers } from 'services/coin'
-import { coinKeyWordState, coinTickerListState } from 'states/coin'
+import { getTopp100CoinTickers } from 'services/coin'
+import { coinTickerListState } from 'states/coin'
 
 import styles from './coinTickerList.module.scss'
 
 const CoinTickerList = () => {
   const setCoinTickerList = useSetRecoilState(coinTickerListState)
-  const setKeyWordList = useSetRecoilState(coinKeyWordState)
-
-  useQuery(['#keyWord'], () => getKeywordCoins().then((result) => setKeyWordList(result)), {
-    refetchOnWindowFocus: false,
-    suspense: true,
-    cacheTime: Infinity,
-    useErrorBoundary: true,
-  })
 
   const { data: coinTickers } = useQuery(['#top100coinTickers'], () => getTopp100CoinTickers(), {
     refetchOnWindowFocus: false,
@@ -40,7 +32,7 @@ const CoinTickerList = () => {
               name: item.name,
               symbol: item.symbol,
               price: item.quotes.USD.price,
-              percentChange24h: item.quotes.USD.percent_change_24h,
+              percentChange1h: item.quotes.USD.percent_change_1h,
             }}
           />
         ))}
