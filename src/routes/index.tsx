@@ -2,7 +2,7 @@ import Layout from 'components/Layout'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import ActivityPage from './Activity'
 import HomePage from './Home'
-import Search from './Search'
+import SearchPage from './Search'
 
 const App = () => {
   const location = useLocation()
@@ -14,7 +14,7 @@ const App = () => {
         <Route path='activity' element={<ActivityPage />}>
           <Route path=':coinId' element={<ActivityPage />} />
         </Route>
-        <Route path='search' element={<Search />} />
+        <Route path='search' element={<SearchPage />} />
       </Route>
     </Routes>
   )
