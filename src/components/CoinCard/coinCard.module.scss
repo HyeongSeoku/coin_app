@@ -84,4 +84,14 @@
       color: colors.$DOWN;
     }
   }
+
+  .starIconContainer {
+    .starIcon {
+      fill: colors.$GRAYA;
+
+      &:hover {
+        fill: colors.$BLACK;
+      }
+    }
+  }
 }
