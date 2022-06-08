@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { DownIcon, EmptyStarIcon, NotChangeIcon, UpIcon } from 'assets/svgs'
 import { COIN_ICON, DEFAULT_COIN_ICON } from 'constants/icons'
 import { transformNumber } from 'utils/transformNumber'
@@ -12,20 +12,20 @@ interface ICoinCard {
   name: string
   symbol: string
   price: number
-  percentChange24h: number
+  percentChange1h: number
 }
 
 const CoinCard = ({ coinData }: { coinData: ICoinCard }) => {
-  const { name, symbol, price, percentChange24h } = coinData
+  const { name, symbol, price, percentChange1h } = coinData
   const [translatePrice, unit] = transformNumber(price)
   const coinLogo = COIN_ICON[symbol] || DEFAULT_COIN_ICON
 
   const [varianceText, varianceIcon] = useMemo(() => {
     let icon = <NotChangeIcon />
     let text = 'equl'
-    if (!percentChange24h) return [text, icon]
+    if (!percentChange1h) return [text, icon]
 
-    if (percentChange24h > 0) {
+    if (percentChange1h > 0) {
       icon = <UpIcon />
       text = 'up'
       return [text, icon]
@@ -34,7 +34,14 @@ const CoinCard = ({ coinData }: { coinData: ICoinCard }) => {
     icon = <DownIcon />
     text = 'down'
     return [text, icon]
-  }, [percentChange24h])
+  }, [percentChange1h])
+
+  const handleFavoriteCoin = (e: React.SyntheticEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    const { name: targetName } = e.currentTarget.dataset
+    console.log(targetName)
+    // TODO: 즐겨찾기 추가하는 로직 구현 예정 store js 사용
+  }
 
   return (
     <Link to={`/activity/${name}`} className={styles.cardLink}>
@@ -58,12 +65,18 @@ const CoinCard = ({ coinData }: { coinData: ICoinCard }) => {
                 { [styles.decrease]: varianceText === 'down' }
               )}
             >
-              {percentChange24h}%
+              {percentChange1h}%
             </span>
           </div>
         </div>
-        <div>
-          <EmptyStarIcon />
+        <div
+          role='button'
+          tabIndex={0}
+          className={styles.starIconContainer}
+          onClick={handleFavoriteCoin}
+          data-name={name}
+        >
+          <EmptyStarIcon className={styles.starIcon} />
         </div>
       </li>
     </Link>

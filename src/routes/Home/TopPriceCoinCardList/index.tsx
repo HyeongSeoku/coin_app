@@ -28,7 +28,7 @@ const TopPriceCoinCardList = () => {
                 id: coinData.id,
                 price: coinData.quotes.USD.price,
                 symbol: coinData.symbol,
-                percentChange24h: coinData.quotes.USD.percent_change_24h,
+                percentChange1h: coinData.quotes.USD.percent_change_1h,
               }}
             />
           ))}

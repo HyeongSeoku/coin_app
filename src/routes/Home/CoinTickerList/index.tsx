@@ -32,7 +32,7 @@ const CoinTickerList = () => {
               name: item.name,
               symbol: item.symbol,
               price: item.quotes.USD.price,
-              percentChange24h: item.quotes.USD.percent_change_24h,
+              percentChange1h: item.quotes.USD.percent_change_1h,
             }}
           />
         ))}
