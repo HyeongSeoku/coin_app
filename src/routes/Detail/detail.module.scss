@@ -1,12 +1,27 @@
+@use 'styles/constants/colors';
+
 .container {
   .headerContainer {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     padding: 10px 0;
 
-    .headerItem {
-      flex-grow: 1;
+    .backIcon {
+      stroke: colors.$GRAYA;
+
+      &:hover {
+        stroke: colors.$BLACK;
+      }
+    }
+
+    .starIcon {
+      fill: colors.$GRAYA;
+
+      &:hover {
+        fill: colors.$BLACK;
+      }
     }
 
     .coinIconContainer {
@@ -31,6 +46,8 @@
     }
 
     .starIconContainer {
+      cursor: pointer;
+
       .starIcon {
         margin-left: auto;
       }
@@ -41,6 +58,7 @@
     line-height: 140%;
 
     .name {
+      margin-left: 4px;
       font-size: 20px;
       line-height: 140%;
     }
@@ -49,9 +67,9 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: space-between;
 
       .priceText {
+        margin-right: auto;
         font-size: 30px;
         font-weight: 600;
       }
@@ -60,13 +78,17 @@
         display: flex;
         flex-direction: column;
 
+        .percentLogo {
+          margin-left: auto;
+        }
+
         .percentText {
-          font-size: 18px;
+          font-size: 20px;
         }
       }
     }
 
-    .chartContainer {
+    .chartWrapper {
       width: 100%;
       padding: auto;
       overflow-x: scroll;
@@ -74,6 +96,20 @@
 
       .chart {
         width: 700px;
+      }
+    }
+
+    .chartGradient {
+      position: relative;
+
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 15%;
+        height: 100%;
+        content: '';
+        background: linear-gradient(to right, rgba(colors.$WHITE, 0%), rgba(colors.$WHITE, 100%));
       }
     }
   }
