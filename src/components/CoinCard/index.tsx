@@ -1,28 +1,21 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import store from 'store'
+import cx from 'classnames'
 
 import { DownIcon, EmptyStarIcon, NotChangeIcon, StarIcon, UpIcon } from 'assets/svgs'
 import { COIN_ICON, DEFAULT_COIN_ICON } from 'constants/icons'
 import { transformNumber } from 'utils/transformNumber'
-import cx from 'classnames'
+import { FAV_STORE } from 'constants/favorite'
 
 import styles from './coinCard.module.scss'
-import { useMount } from 'react-use'
+import { useRecoilState } from 'recoil'
+import { favoriteListState } from 'states/favorite'
 
-interface ICoinCard {
-  name: string
-  symbol: string
-  price: number
-  percentChange1h: number
-}
-
-const FAV_STORE = 'favoriteList'
-
-const CoinCard = ({ coinData }: { coinData: ICoinCard }) => {
+const CoinCard = ({ coinData }: { coinData: ICoinCardData }) => {
   const { name, symbol, price, percentChange1h } = coinData
   const [translatePrice, unit] = transformNumber(price)
-  const [favoriteList, setFavoriteList] = useState<ICoinCard[]>(store.get(FAV_STORE) || [])
+  const [favoriteList, setFavoriteList] = useRecoilState(favoriteListState)
   const coinLogo = COIN_ICON[symbol] || DEFAULT_COIN_ICON
 
   const isFavorite = useMemo(() => {
@@ -64,7 +57,6 @@ const CoinCard = ({ coinData }: { coinData: ICoinCard }) => {
 
   const handleFavoriteCoin = (e: React.SyntheticEvent<HTMLDivElement>) => {
     e.preventDefault()
-    const { name: targetName } = e.currentTarget.dataset
     isFavorite ? deleteFavorite() : addFavorite()
 
     // TODO: 즐겨찾기 추가하는 로직 구현 예정 store js 사용
@@ -96,13 +88,7 @@ const CoinCard = ({ coinData }: { coinData: ICoinCard }) => {
             </span>
           </div>
         </div>
-        <div
-          role='button'
-          tabIndex={0}
-          className={styles.starIconContainer}
-          onClick={handleFavoriteCoin}
-          data-name={name}
-        >
+        <div role='button' tabIndex={0} className={styles.starIconContainer} onClick={handleFavoriteCoin}>
           {favoriteIcon}
         </div>
       </li>
