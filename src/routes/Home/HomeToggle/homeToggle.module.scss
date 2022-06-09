@@ -1,3 +1,5 @@
+@use 'styles/mixins/animation';
+
 .container {
   display: flex;
   flex-direction: column;
@@ -6,9 +8,23 @@
 
   .contentArea {
     width: 100%;
+    height: 360px;
   }
 }
 
 .todayBestListContainer {
   width: 100%;
+  height: 100%;
+  @include animation.fadeIn(1s);
+}
+
+.feedContainer {
+  width: 100%;
+  height: 100%;
+  @include animation.fadeIn(1s);
+
+  .emptyListText {
+    font-size: 18px;
+    line-height: 140%;
+  }
 }
