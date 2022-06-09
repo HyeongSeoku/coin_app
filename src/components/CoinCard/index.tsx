@@ -1,12 +1,14 @@
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import store from 'store'
 
-import { DownIcon, EmptyStarIcon, NotChangeIcon, UpIcon } from 'assets/svgs'
+import { DownIcon, EmptyStarIcon, NotChangeIcon, StarIcon, UpIcon } from 'assets/svgs'
 import { COIN_ICON, DEFAULT_COIN_ICON } from 'constants/icons'
 import { transformNumber } from 'utils/transformNumber'
 import cx from 'classnames'
 
 import styles from './coinCard.module.scss'
+import { useMount } from 'react-use'
 
 interface ICoinCard {
   name: string
@@ -15,10 +17,22 @@ interface ICoinCard {
   percentChange1h: number
 }
 
+const FAV_STORE = 'favoriteList'
+
 const CoinCard = ({ coinData }: { coinData: ICoinCard }) => {
   const { name, symbol, price, percentChange1h } = coinData
   const [translatePrice, unit] = transformNumber(price)
+  const [favoriteList, setFavoriteList] = useState<ICoinCard[]>(store.get(FAV_STORE) || [])
   const coinLogo = COIN_ICON[symbol] || DEFAULT_COIN_ICON
+
+  const isFavorite = useMemo(() => {
+    const target = favoriteList.find((item) => item.name === name)
+    return typeof target !== 'undefined'
+  }, [favoriteList, name])
+
+  const favoriteIcon = useMemo(() => {
+    return isFavorite ? <StarIcon className={styles.starIcon} /> : <EmptyStarIcon className={styles.starIcon} />
+  }, [isFavorite])
 
   const [varianceText, varianceIcon] = useMemo(() => {
     let icon = <NotChangeIcon />
@@ -36,10 +50,23 @@ const CoinCard = ({ coinData }: { coinData: ICoinCard }) => {
     return [text, icon]
   }, [percentChange1h])
 
+  const addFavorite = () => {
+    const targetObj = { name, symbol, price, percentChange1h }
+    store.set(FAV_STORE, [targetObj, ...favoriteList])
+    setFavoriteList(store.get(FAV_STORE))
+  }
+
+  const deleteFavorite = () => {
+    const filteredList = favoriteList.filter((item) => item.name !== name)
+    store.set(FAV_STORE, filteredList)
+    setFavoriteList(store.get(FAV_STORE))
+  }
+
   const handleFavoriteCoin = (e: React.SyntheticEvent<HTMLDivElement>) => {
     e.preventDefault()
     const { name: targetName } = e.currentTarget.dataset
-    console.log(targetName)
+    isFavorite ? deleteFavorite() : addFavorite()
+
     // TODO: 즐겨찾기 추가하는 로직 구현 예정 store js 사용
   }
 
@@ -76,7 +103,7 @@ const CoinCard = ({ coinData }: { coinData: ICoinCard }) => {
           onClick={handleFavoriteCoin}
           data-name={name}
         >
-          <EmptyStarIcon className={styles.starIcon} />
+          {favoriteIcon}
         </div>
       </li>
     </Link>
