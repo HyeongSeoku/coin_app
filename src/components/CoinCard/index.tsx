@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import store from 'store'
 import cx from 'classnames'
@@ -7,10 +7,10 @@ import { DownIcon, EmptyStarIcon, NotChangeIcon, StarIcon, UpIcon } from 'assets
 import { COIN_ICON, DEFAULT_COIN_ICON } from 'constants/icons'
 import { transformNumber } from 'utils/transformNumber'
 import { FAV_STORE } from 'constants/favorite'
-
-import styles from './coinCard.module.scss'
 import { useRecoilState } from 'recoil'
 import { favoriteListState } from 'states/favorite'
+
+import styles from './coinCard.module.scss'
 
 const CoinCard = ({ coinData }: { coinData: ICoinCardData }) => {
   const { name, symbol, price, percentChange1h } = coinData
