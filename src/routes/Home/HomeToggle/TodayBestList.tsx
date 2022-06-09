@@ -4,13 +4,13 @@ import { useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 import { coinTickerListState } from 'states/coin'
 
-import styles from './todayBestList.module.scss'
+import styles from './homeToggle.module.scss'
 
 const TodayBestList = () => {
   const coinTickerList = useRecoilValue(coinTickerListState)
 
   const toDayBest4List = useMemo(() => {
-    const arr = sortBy(coinTickerList, `quotes.USD.percent_change_24h`).reverse()
+    const arr = sortBy(coinTickerList, `quotes.USD.percent_change_1h`).reverse()
     return arr.slice(0, 4)
   }, [coinTickerList])
 
