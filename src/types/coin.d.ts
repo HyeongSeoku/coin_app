@@ -8,6 +8,13 @@ interface ICoinData {
   type: string
 }
 
+interface ICoinCardData {
+  name: string
+  symbol: string
+  price: number
+  percentChange1h: number
+}
+
 interface ITickerProps {
   id: string
   name: string
