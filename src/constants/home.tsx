@@ -1,6 +1,6 @@
 import { HomeIcon } from 'assets/svgs'
 
 export const HOME_TOGGLE = [
-  { id: 'todayBest', name: 'Today Best', icon: <HomeIcon /> },
-  { id: 'myFeed', name: 'My Feed', icon: <HomeIcon /> },
+  { id: 'TODAY_BEST', name: 'Today Best', icon: <HomeIcon /> },
+  { id: 'MY_FEED', name: 'My Feed', icon: <HomeIcon /> },
 ]

@@ -13,7 +13,7 @@ interface IToggleProps {
 }
 
 const Toggle = ({ toggleData }: { toggleData: IToggleProps[] }) => {
-  const [selectedToggle, setSelectedToggle] = useState(toggleData[0].name)
+  const [selectedToggle, setSelectedToggle] = useState(toggleData[0].id)
   const setHomeSelectedToggle = useSetRecoilState(homeToggleState)
   const { pathname } = useLocation()
 
@@ -31,9 +31,9 @@ const Toggle = ({ toggleData }: { toggleData: IToggleProps[] }) => {
             className={styles.radioBtn}
             type='radio'
             name='radio'
-            value={toggleItem.name}
+            value={toggleItem.id}
             id={toggleItem.id}
-            checked={selectedToggle === toggleItem.name}
+            checked={selectedToggle === toggleItem.id}
             onChange={handleChangeRadio}
           />
           <label className={styles.radioText} htmlFor={toggleItem.id}>
