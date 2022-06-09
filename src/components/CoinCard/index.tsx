@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react'
+import { Link } from 'react-router-dom'
+
 import { DownIcon, EmptyStarIcon, NotChangeIcon, UpIcon } from 'assets/svgs'
 import { COIN_ICON, DEFAULT_COIN_ICON } from 'constants/icons'
 import { transformNumber } from 'utils/transformNumber'
-
 import cx from 'classnames'
 
 import styles from './coinCard.module.scss'
-import { Link } from 'react-router-dom'
 
 interface ICoinCard {
   name: string
