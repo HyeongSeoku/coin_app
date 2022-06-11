@@ -22,7 +22,7 @@ export const getCoinList = () => axios.get(`/v1/coins`)
 
 export const getTopp100CoinTickers = () => axios.get(`/v1/tickers`).then((res) => res.data.splice(0, 100))
 
-export const getCoinTickers = () => axios.get(`/v1/tickers`)
+export const getCoinTickers = () => axios.get(`/v1/tickers`).then((res) => res.data)
 
 export const getCoinDetail = (params: IHistoryParams) =>
   axios.get(`/v1/tickers/${params.coinId}/historical`, {
@@ -31,8 +31,5 @@ export const getCoinDetail = (params: IHistoryParams) =>
       interval: params.interval,
     },
   })
-
-export const getCoinDetailTicker = (target: string) =>
-  axios.get(`/v1/tickers`).then((res) => res.data.find((item: ITickerProps) => item.name === target))
 
 export const get300CoinTickers = () => axios.get(`/v1/tickers`).then((res) => res.data.splice(0, 300))
