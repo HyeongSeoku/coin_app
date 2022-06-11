@@ -15,5 +15,5 @@ export const transformNumber = (num: number) => {
   if (num >= B) return [fixedNumber(num / B), 'B']
   if (num >= M) return [fixedNumber(num / M), 'M']
   if (num >= K) return [fixedNumber(num / K), 'K']
-  return [num.toFixed(4), '']
+  return [fixedNumber(num), '']
 }

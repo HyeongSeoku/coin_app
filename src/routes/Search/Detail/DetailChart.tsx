@@ -1,7 +1,13 @@
-import { VictoryAxis, VictoryChart, VictoryLine, VictoryTooltip } from 'victory'
 import dayjs from 'dayjs'
+import { VictoryAxis, VictoryChart, VictoryLine, VictoryTooltip } from 'victory'
 
-const DetailChart = ({ chartData }: { chartData: IChart[] }) => {
+interface IProps {
+  chartData: IChart[]
+  isIncrease: boolean
+}
+
+const DetailChart = ({ data }: { data: IProps }) => {
+  const { chartData, isIncrease } = data
   return (
     <VictoryChart domainPadding={0} padding={{ top: 30, bottom: 30, right: 50, left: 60 }}>
       <VictoryAxis
@@ -19,11 +25,13 @@ const DetailChart = ({ chartData }: { chartData: IChart[] }) => {
         y='price'
         interpolation='monotoneX'
         domainPadding={{ x: 0, y: 0 }}
-        style={{ labels: { fontSize: 10, padding: 10 }, data: { strokeWidth: 1, stroke: '#008000' } }}
+        style={{
+          labels: { fontSize: 10, padding: 10 },
+          data: { strokeWidth: 1, stroke: isIncrease ? '#38a45c' : '#bb0500' },
+        }}
         labelComponent={<VictoryTooltip dy={0} centerOffset={{ x: 25 }} />}
       />
 
-      {/* <VictoryBar data={detailChartData} x='timestamp' y='price' /> */}
       <VictoryAxis
         tickFormat={(y) => dayjs(y).format('HH')}
         style={{

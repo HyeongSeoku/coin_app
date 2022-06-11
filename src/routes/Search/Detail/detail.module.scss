@@ -1,6 +1,9 @@
 @use 'styles/constants/colors';
+@use 'styles/mixins/animation';
 
 .container {
+  padding: 10px 20px;
+
   .headerContainer {
     display: flex;
     flex-direction: row;
@@ -55,6 +58,7 @@
   }
 
   .contentContainer {
+    margin: 20px 0;
     line-height: 140%;
 
     .name {
@@ -85,31 +89,43 @@
         .percentText {
           font-size: 20px;
         }
+
+        .increase {
+          color: colors.$UP;
+        }
+
+        .decrease {
+          color: colors.$DOWN;
+        }
       }
     }
 
-    .chartWrapper {
-      width: 100%;
-      padding: auto;
-      overflow-x: scroll;
-      overflow-y: hidden;
+    .chartContainer {
+      margin: 10px 0;
 
-      .chart {
-        width: 700px;
+      .chartWrapper {
+        width: 100%;
+        padding: auto;
+        overflow-x: scroll;
+        overflow-y: hidden;
+
+        .chart {
+          width: 700px;
+        }
       }
-    }
 
-    .chartGradient {
-      position: relative;
+      .chartGradient {
+        position: relative;
 
-      &::after {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 15%;
-        height: 100%;
-        content: '';
-        background: linear-gradient(to right, rgba(colors.$WHITE, 0%), rgba(colors.$WHITE, 100%));
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 15%;
+          height: 100%;
+          content: '';
+          background: linear-gradient(to right, rgba(colors.$WHITE, 0%), rgba(colors.$WHITE, 100%));
+        }
       }
     }
   }

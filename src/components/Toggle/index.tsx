@@ -1,39 +1,34 @@
-import React, { useState } from 'react'
-import { useLocation } from 'react-use'
-import { useSetRecoilState } from 'recoil'
-
-import { homeToggleState } from 'states/home'
-
 import styles from './toggle.module.scss'
 
 interface IToggleProps {
-  id: string
-  name: string
-  icon: JSX.Element
+  contents: {
+    id: string
+    name: string
+    icon: JSX.Element
+  }[]
+  currentToggleState: string
+  setToggle: React.Dispatch<React.SetStateAction<string>>
 }
 
-const Toggle = ({ toggleData }: { toggleData: IToggleProps[] }) => {
-  const [selectedToggle, setSelectedToggle] = useState(toggleData[0].name)
-  const setHomeSelectedToggle = useSetRecoilState(homeToggleState)
-  const { pathname } = useLocation()
+const Toggle = ({ toggleData }: { toggleData: IToggleProps }) => {
+  const { contents, currentToggleState, setToggle } = toggleData
 
   const handleChangeRadio = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
-    setSelectedToggle(value)
-    if (pathname === '/') setHomeSelectedToggle(value)
+    setToggle(value)
   }
 
   return (
     <div className={styles.radioGroup}>
-      {toggleData.map((toggleItem) => (
+      {contents.map((toggleItem) => (
         <div role='button' className={styles.radioItem} key={`toggle_${toggleItem.id}`}>
           <input
             className={styles.radioBtn}
             type='radio'
             name='radio'
-            value={toggleItem.name}
+            value={toggleItem.id}
             id={toggleItem.id}
-            checked={selectedToggle === toggleItem.name}
+            checked={currentToggleState === toggleItem.id}
             onChange={handleChangeRadio}
           />
           <label className={styles.radioText} htmlFor={toggleItem.id}>
