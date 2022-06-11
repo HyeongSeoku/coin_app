@@ -18,7 +18,7 @@ const ResultList = ({ keyword }: IProps) => {
 
   const result = useMemo(() => {
     if (!data) return []
-    return data.filter((item: ITickerProps) => item.name.startsWith(keyword))
+    return data.filter((item: ITickerProps) => item.name.toLowerCase().startsWith(keyword.toLowerCase()))
   }, [data, keyword])
 
   return (
