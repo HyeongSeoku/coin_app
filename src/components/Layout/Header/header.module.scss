@@ -7,9 +7,34 @@
   left: 0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 70px;
-  padding: 8px 15px;
+  padding: 10px 20px;
   overflow: hidden;
   color: colors.$WHITE;
-  background-color: colors.$HEADER;
+  background-color: colors.$WHITE;
+  border-bottom: 1px solid colors.$GRAYE;
+
+  .logoContainer {
+    .mainLogo {
+      width: 55px;
+      fill: colors.$DARK;
+    }
+    margin-bottom: 10px;
+  }
+
+  .moneyIconContainer {
+    cursor: pointer;
+
+    .moneyIcon {
+      width: 15px;
+      margin-right: 10px;
+      fill: colors.$DARK;
+
+      &:hover {
+        fill: colors.$YELLOW;
+        transition: all 0.3s ease-in;
+      }
+    }
+  }
 }

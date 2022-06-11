@@ -7,12 +7,12 @@
   left: 0;
   z-index: 10;
   width: 450px;
-  max-height: 70px;
+  max-height: 100px;
   margin-right: auto;
   margin-left: auto;
   overflow: scroll;
   visibility: hidden;
-  background-color: colors.$GRAYE;
+  background-color: colors.$GRAYD;
 
   ul {
     width: 100%;
@@ -26,9 +26,17 @@
 }
 
 .dropDownItem {
+  display: flex;
+  align-items: center;
   width: 100%;
+  height: 35px;
   padding: 0 5px;
   line-height: 140%;
+  border-bottom: 1px solid colors.$GRAYE;
+
+  div {
+    width: 100%;
+  }
 
   &:hover {
     background-color: colors.$GRAYA;
