@@ -10,6 +10,7 @@ export { ReactComponent as StarIcon } from './star.svg'
 export { ReactComponent as EmptyStarIcon } from './emptyStar.svg'
 export { ReactComponent as LoaderIcon } from './loader.svg'
 export { ReactComponent as BackLogo } from './goBackLogo.svg'
+export { ReactComponent as NotFound } from './notfound.svg'
 
 export { ReactComponent as Bitcoin } from './coinIcon/bitcoinLogo.svg'
 export { ReactComponent as Ethereum } from './coinIcon/ethereumLogo.svg'
