@@ -1,6 +1,7 @@
-import Layout from 'components/Layout'
 import { Route, Routes } from 'react-router-dom'
+import Layout from 'components/Layout'
 import HomePage from './Home'
+import NotFoundPage from './NotFound404'
 import SearchPage from './Search'
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
         <Route path='search' element={<SearchPage />}>
           <Route path=':coinId' element={<SearchPage />} />
         </Route>
+        <Route path='*' element={<NotFoundPage />} />
       </Route>
     </Routes>
   )

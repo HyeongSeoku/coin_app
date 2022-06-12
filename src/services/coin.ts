@@ -10,7 +10,7 @@ const BASE_URL = 'https://api.coinpaprika.com'
 
 export const getKeywordCoins = () =>
   axios.get(`${BASE_URL}/v1/coins`).then((res) => {
-    const spliceRes = res.data.splice(0, 300)
+    const spliceRes = res.data.splice(0, 5000)
     const result: IDropDown[] = []
     spliceRes.map((item: ICoinData) => result.push({ name: item.name, id: item.id }))
     return result
