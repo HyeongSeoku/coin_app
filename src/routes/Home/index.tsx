@@ -5,7 +5,7 @@ import SearchForm from 'routes/Home/SearchForm'
 import TopCoinCardList from './TopPriceCoinCardList'
 import CoinTickerList from './CoinTickerList'
 import DropDownList from 'components/DropDown'
-import HomeToggle from './HomeToggle'
+import HomeTab from './HomeTab'
 
 import styles from './home.module.scss'
 import { useSetRecoilState } from 'recoil'
@@ -26,7 +26,7 @@ const HomePage = () => {
           <SearchForm />
           <DropDownList />
         </div>
-        <HomeToggle />
+        <HomeTab />
         <TopCoinCardList />
         <CoinTickerList />
       </Suspense>

@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 import { coinTickerListState } from 'states/coin'
 
-import styles from './homeToggle.module.scss'
+import styles from './homeTab.module.scss'
 
 const TodayBestList = () => {
   const coinTickerList = useRecoilValue(coinTickerListState)
