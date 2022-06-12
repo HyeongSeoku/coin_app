@@ -13,7 +13,7 @@ const Nav = () => {
     if (loc === '/') return 'home'
     if (loc.includes('search')) return 'search'
 
-    return 'home'
+    return ''
   }
 
   const selectedNav = useMemo(() => {
