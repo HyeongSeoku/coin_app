@@ -1,16 +1,15 @@
 import { Suspense } from 'react'
-
-import Loader from 'components/Loader'
-import SearchForm from 'routes/Home/SearchForm'
-import TopCoinCardList from './TopPriceCoinCardList'
-import CoinTickerList from './CoinTickerList'
-import DropDownList from 'components/DropDown'
-import HomeTab from './HomeTab'
-
-import styles from './home.module.scss'
 import { useSetRecoilState } from 'recoil'
 import { searchKeyWordState } from 'states/search'
 import { useMount } from 'react-use'
+
+import Loader from 'components/Loader'
+import TopCoinCardList from './TopPriceCoinCardList'
+import CoinTickerList from './CoinTickerList'
+import HomeTab from './HomeTab'
+import SearchForm from 'components/SearchForm'
+
+import styles from './home.module.scss'
 
 const HomePage = () => {
   const setKeyWord = useSetRecoilState(searchKeyWordState)
@@ -24,7 +23,6 @@ const HomePage = () => {
       <Suspense fallback={<Loader />}>
         <div className={styles.searchContainer}>
           <SearchForm />
-          <DropDownList />
         </div>
         <HomeTab />
         <TopCoinCardList />

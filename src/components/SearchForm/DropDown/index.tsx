@@ -30,7 +30,7 @@ const DropDownList = () => {
     const arr = keyWordList!.filter((item) =>
       item.name.replace(/(\s*)/g, '').toLowerCase().startsWith(keyWord.replace(/(\s*)/g, '').toLowerCase())
     )
-    return arr
+    return arr.slice(0, 10)
   }, [keyWord, keyWordList])
 
   const dropDownList = useMemo(() => {

@@ -19,7 +19,11 @@ const DropDownItem = ({ data }: { data: IDropDown }) => {
     navigate({ pathname: '/search', search: createSearchParams({ name: drop! }).toString() })
   }
 
-  // TODO : 로직 단순화
+  const preventFocusMove = (e: React.MouseEvent) => {
+    e.preventDefault()
+  }
+
+  // TODO: 로직 단순화
   const markText = useMemo(() => {
     let markIdx = 0
     if (!keyWord.length) {
@@ -52,7 +56,7 @@ const DropDownItem = ({ data }: { data: IDropDown }) => {
 
   return (
     <li className={styles.dropDownItem} data-id={id}>
-      <div role='button' tabIndex={0} onClick={handleClickDropDown} data-drop={name}>
+      <div role='button' tabIndex={0} onClick={handleClickDropDown} data-drop={name} onMouseDown={preventFocusMove}>
         {markText}
       </div>
     </li>

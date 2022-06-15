@@ -1,17 +1,16 @@
 import { useSearchParams, useParams } from 'react-router-dom'
 import { useMount } from 'react-use'
 import { useSetRecoilState } from 'recoil'
-
-import DropDownList from 'components/DropDown'
-import SearchForm from 'routes/Home/SearchForm'
-import { dropDownOpenState } from 'states/search'
-
-import styles from './search.module.scss'
 import { Suspense, useMemo } from 'react'
+
 import Loader from 'components/Loader'
 import DefaultList from './DefaultList'
 import ResultList from './ResultList'
 import Detail from 'routes/Search/Detail'
+import SearchForm from 'components/SearchForm'
+import { dropDownOpenState } from 'states/search'
+
+import styles from './search.module.scss'
 
 const SearchPage = () => {
   const [searchParam] = useSearchParams()
@@ -39,7 +38,6 @@ const SearchPage = () => {
         <Suspense fallback={<Loader />}>
           <div className={styles.searchContainer}>
             <SearchForm />
-            <DropDownList />
           </div>
           <div>{searchResultList}</div>
         </Suspense>

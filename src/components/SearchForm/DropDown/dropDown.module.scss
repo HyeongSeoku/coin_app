@@ -1,5 +1,10 @@
 @use 'styles/constants/colors';
 
+a {
+  color: colors.$GRAY800;
+  text-decoration: none;
+}
+
 .dropDownContainer {
   position: absolute;
   top: 50px;

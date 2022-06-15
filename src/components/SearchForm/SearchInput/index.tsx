@@ -6,9 +6,9 @@ import { modalOpenState } from 'states/modal'
 
 import { dropDownOpenState, searchKeyWordState } from 'states/search'
 
-import styles from './searchForm.module.scss'
+import styles from './searchInput.module.scss'
 
-const SearchForm = () => {
+const SearchInput = () => {
   const navigate = useNavigate()
   const [keyWord, setKeyWord] = useRecoilState(searchKeyWordState)
   const setDropDownState = useSetRecoilState(dropDownOpenState)
@@ -31,11 +31,15 @@ const SearchForm = () => {
     return setModalState({ open: true, text: '검색어를 입력해주세요!' })
   }
 
+  const handleBlurDropDown = () => {
+    setDropDownState((current) => !current)
+  }
+
   return (
     <form className={styles.searchContainer} onSubmit={handleSubmitKeyword}>
-      <input placeholder='Search Crypto' value={keyWord} onChange={handleChangeKeyword} />
+      <input placeholder='Search Crypto' value={keyWord} onChange={handleChangeKeyword} onBlur={handleBlurDropDown} />
     </form>
   )
 }
 
-export default SearchForm
+export default SearchInput
