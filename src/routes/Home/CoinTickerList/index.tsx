@@ -1,8 +1,8 @@
 import CoinCard from 'components/CoinCard'
-import { useEffect } from 'react'
 import { useQuery } from 'react-query'
+import { useEffect } from 'react'
 import { useSetRecoilState } from 'recoil'
-import { getTopp100CoinTickers } from 'services/coin'
+import { getTop100CoinTickers } from 'services/coin'
 import { coinTickerListState } from 'states/coin'
 
 import styles from './coinTickerList.module.scss'
@@ -10,7 +10,7 @@ import styles from './coinTickerList.module.scss'
 const CoinTickerList = () => {
   const setCoinTickerList = useSetRecoilState(coinTickerListState)
 
-  const { data: coinTickers } = useQuery(['#top100coinTickers'], () => getTopp100CoinTickers(), {
+  const { data: coinTickers } = useQuery(['#top100coinTickers'], () => getTop100CoinTickers(), {
     refetchOnWindowFocus: false,
     suspense: true,
     cacheTime: Infinity,
