@@ -1,12 +1,12 @@
 import React, { useMemo, useRef } from 'react'
 import { useQuery } from 'react-query'
-import { Link } from 'react-router-dom'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { Link, useParams } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
 import cx from 'classnames'
 import store from 'store'
 
 import { COIN_ICON, DEFAULT_COIN_ICON } from 'constants/icons'
-import { getCoinDetail } from 'services/coin'
+import { getDetailData } from 'services/coin'
 import { BackLogo, EmptyStarIcon, StarIcon } from 'assets/svgs'
 import { calculateDate } from 'utils/calculateDate'
 import { fixedNumber } from 'utils/transformNumber'
@@ -14,26 +14,30 @@ import DetailChart from './DetailChart'
 import { favoriteListState } from 'states/favorite'
 import { handleFavoriteList } from '../../../utils/favoriteControl'
 import { FAV_STORE } from 'constants/favorite'
-import { coinTickerListState } from 'states/coin'
 import { useVariance } from 'hooks/useVariance'
 
 import styles from './detail.module.scss'
 
-interface IProps {
-  idState: string
-}
-
-const Detail = ({ idState }: IProps) => {
+const Detail = () => {
+  const params = useParams()
+  const nameState = params.coinName
   const [apiStart] = calculateDate()
-  const coinTickerList = useRecoilValue(coinTickerListState)
 
   const [favoriteList, setFavoriteList] = useRecoilState(favoriteListState)
   const chartRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const targetCoin = coinTickerList.find((item) => item.name === idState)
 
-  const { price, percent_change_1h: percentChange1h } = targetCoin!.quotes.USD
-  const { symbol, name } = targetCoin!
+  const { data: coinData } = useQuery([`#chartData${nameState}`], () => getDetailData(nameState!, apiStart), {
+    refetchOnWindowFocus: false,
+    suspense: true,
+    cacheTime: Infinity,
+    useErrorBoundary: true,
+  })
+  const [detailData, detailGraph] = coinData!
+
+  const { price, percent_change_1h: percentChange1h } = detailData.quotes.USD
+  const { symbol, name } = detailData
+
   const coinLogo = COIN_ICON[symbol] || DEFAULT_COIN_ICON
   const isIncrease = percentChange1h > 0
   const [varianceText, varianceIcon] = useVariance(percentChange1h)
@@ -46,17 +50,6 @@ const Detail = ({ idState }: IProps) => {
   const favoriteIcon = useMemo(() => {
     return isFavorite ? <StarIcon className={styles.starIcon} /> : <EmptyStarIcon className={styles.starIcon} />
   }, [isFavorite])
-
-  const { data: detailChartData } = useQuery(
-    [`#chartData${targetCoin!.id}`, targetCoin!.id],
-    () => getCoinDetail({ coinId: targetCoin!.id, start: apiStart, interval: '1h' }).then((res) => res.data),
-    {
-      refetchOnWindowFocus: false,
-      suspense: true,
-      cacheTime: Infinity,
-      useErrorBoundary: true,
-    }
-  )
 
   const onFavIconClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
@@ -111,7 +104,7 @@ const Detail = ({ idState }: IProps) => {
         <div className={cx(styles.chartContainer, { [styles.chartGradient]: isChartScoll })} ref={containerRef}>
           <div className={styles.chartWrapper}>
             <div className={styles.chart} ref={chartRef}>
-              <DetailChart data={{ chartData: detailChartData, isIncrease }} />
+              <DetailChart data={{ chartData: detailGraph, isIncrease }} />
             </div>
           </div>
         </div>
