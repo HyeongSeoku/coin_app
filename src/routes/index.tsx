@@ -10,7 +10,7 @@ const App = () => {
       <Route path='/' element={<Layout />}>
         <Route path='/' element={<HomePage />} />
         <Route path='search' element={<SearchPage />}>
-          <Route path=':coinId' element={<SearchPage />} />
+          <Route path=':coinName' element={<SearchPage />} />
         </Route>
         <Route path='*' element={<NotFoundPage />} />
       </Route>

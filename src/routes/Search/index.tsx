@@ -16,12 +16,12 @@ const SearchPage = () => {
   const [searchParam] = useSearchParams()
   const currentKeyword = searchParam.get('name')
   const setDropDownState = useSetRecoilState(dropDownOpenState)
-  const { coinId } = useParams()
+  const { coinName } = useParams()
 
   const isDetail = useMemo(() => {
-    if (!coinId) return false
+    if (!coinName) return false
     return true
-  }, [coinId])
+  }, [coinName])
 
   const searchResultList = useMemo(() => {
     if (!currentKeyword) return <DefaultList />
@@ -44,7 +44,7 @@ const SearchPage = () => {
       )}
       {isDetail && (
         <Suspense fallback={<Loader />}>
-          <Detail idState={coinId!} />
+          <Detail />
         </Suspense>
       )}
     </div>
