@@ -3,7 +3,7 @@ import cx from 'classnames'
 import { Link } from 'react-router-dom'
 
 import LineChart from 'components/LineChart'
-import { getCoinDetail } from 'services/coin'
+import { getCoinDetailGraph } from 'services/coin'
 import { transformNumber } from 'utils/transformNumber'
 import { calculateDate } from 'utils/calculateDate'
 import { useVariance } from 'hooks/useVariance'
@@ -30,7 +30,7 @@ const TopCoinCard = ({ data }: { data: IProps }) => {
 
   const { data: chartData } = useQuery(
     [`#chartData${id}`],
-    () => getCoinDetail({ coinId: id, start: apiStart, interval: '1h' }),
+    () => getCoinDetailGraph({ coinId: id, start: apiStart, interval: '1h' }),
     {
       refetchOnWindowFocus: false,
       suspense: true,
