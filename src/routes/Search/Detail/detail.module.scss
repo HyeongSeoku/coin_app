@@ -115,17 +115,13 @@
       }
 
       .chartGradient {
-        position: relative;
-
-        &::after {
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 15%;
-          height: 100%;
-          content: '';
-          background: linear-gradient(to right, rgba(colors.$WHITE, 0%), rgba(colors.$WHITE, 100%));
-        }
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 15%;
+        height: 100%;
+        content: '';
+        background: linear-gradient(to right, rgba(colors.$WHITE, 0%), rgba(colors.$WHITE, 100%));
       }
     }
   }
