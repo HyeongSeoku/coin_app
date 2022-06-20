@@ -395,6 +395,16 @@ npm start
 ---
 
 
+### Not Found page
+
+![notfound_demo](https://user-images.githubusercontent.com/48541850/174527613-67092d15-60e3-4e1f-833c-578a750a7473.gif)
+
+💁 설명 
+
+    설정되어있는 이외의 경로에 접근할 경우 not found 페이지가 나타나도록 구현
+
+<br>
+
 ### ETC
 
 💁 `calculateData.ts`설명 
